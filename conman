@@ -1,0 +1,235 @@
+#!/bin/bash
+
+
+# Run from ConMan's directory
+cd "$(dirname "$0")"
+
+
+################################################################################
+# Argument Parsing Utilities
+################################################################################
+
+# Stores a map from argument -> action, where action is executed with eval.
+typeset -A arguments
+typeset -A arguments_help
+
+# Add an argument to the program. Args:
+#  - Argument (e.g. -f)
+#  - Command to execute when present
+#  - Help string
+# In the command of the argument, $1 is the next argument, and should be shifted
+# if used.
+function add_argument() {
+	arguments["$1"]="$2"
+	arguments_help["$1"]="$3"
+}
+
+# Adds an argument which sets an environment variable. Args:
+#  - Argument
+#  - Variable name
+#  - Help string (which is appended with '(Default = ...)'
+function add_argument_var() {
+	local CUR_VAL="$(eval "echo \$$2")"
+	[ -n "$CUR_VAL" ] && local DEFAULT_NOTICE=" (Default = $CUR_VAL)"
+	add_argument "$1" "$2=\"\$1\";shift" "$3$DEFAULT_NOTICE"
+}
+
+# Print the help strings for all arguments.
+function print_help() {
+	echo "Usage: $0 [OPTION]"
+	echo
+	for option in "${!arguments_help[@]}"; do
+		printf "  %-10s  %s\n" $option  "${arguments_help[$option]}"
+	done
+	echo
+}
+
+add_argument -h "print_help; exit 1" "Display this message."
+
+
+################################################################################
+# Constants & File/Dir Definitions
+################################################################################
+
+# The location that is scanned for m4 files to use for configuration
+CONFIG_DIR="`pwd`/configs"
+add_argument_var -t "CONFIG_DIR" "Override the config template directory."
+
+# The location of the local configuration file.
+LOCAL_CONFIG_FILE="`pwd`/local_config.m4"
+add_argument_var -c "LOCAL_CONFIG_FILE" "Set the local config file location."
+
+# The location of the local configuration file.
+GLOBAL_CONFIG_FILE="`pwd`/config.m4"
+add_argument_var -C "GLOBAL_CONFIG_FILE" "Set the global config file location."
+
+# Location where plugins for ConMan live.
+PLUGIN_DIR="`pwd`/plugins"
+add_argument_var -p "PLUGIN_DIR" "Override ConMan plugin directory."
+
+# Location where backups of installed scripts are kept
+BACKUP_DIR="`pwd`/backups"
+add_argument_var -b "BACKUP_DIR" "Override backup file directory."
+
+# Bool specifying whether files should be overwritten without confirmation
+FORCE_OVERWRITE=0
+add_argument -f "FORCE_OVERWRITE=1" "Force all files to be updated."
+
+# A file which is populated during the first pass with commands to execute
+# during the second
+SCRIPT_FILE="$(mktemp)"
+
+# A file which is included at the end of the header and which can be used by
+# plugins to extend the M4 interface.
+M4_INCLUDE="$(mktemp --suffix=.m4)"
+
+# A tempoary file where config files will get dumped before being written to the
+# system
+OUT_FILE="$(mktemp)"
+
+
+################################################################################
+# Utilities for Plugins
+################################################################################
+
+# Adds an M4 command for the required action. Args:
+#  - M4 command name
+#  - Bash function to execute
+function add_m4_command() {
+	echo "define($1, \`ADD_TO_SCRIPT($2 SCRIPT_ARGS(\$@))dnl')" \
+	  >> "$M4_INCLUDE"
+}
+
+
+################################################################################
+# General M4 Wrapper
+################################################################################
+
+# Call M4 with the conventional arguments for M4 as used in ConMan. Args:
+#  - m4_file target
+#  - script_file to write to
+#  - id whose output to print
+#  - [all other arguments appended to end]
+function conman_m4() {
+	m4_file="$1"
+	script_file="$2"
+	id="$3"
+	shift 3
+	
+	m4                             \
+		-DM4_FILE="$m4_file"         \
+		-DSCRIPT_FILE="$script_file" \
+		-DOUTPUT_ID="$id"            \
+		-I"$CONFIG_DIR"              \
+		"header.m4"                  \
+		"$M4_INCLUDE"                \
+		"$LOCAL_CONFIG_FILE"         \
+		"$GLOBAL_CONFIG_FILE"        \
+		"${M4_PLUGINS[@]}"           \
+		"$m4_file"                   \
+		"$@"
+}
+
+
+################################################################################
+# File Installation Functions
+################################################################################
+
+# Install the file in $1 to $2. (Essentially a copy with warnings!)
+# This keeps backups and warns if the destination file has changed
+# since this was last ran.
+function install_file() {
+	src="$1"
+	dest="$2"
+	
+	backup="$BACKUP_DIR/$dest"
+	
+	# Check that we're not about to clober anything (unless FORCE_OVERWRITE is 1)
+	# If the destination and the backup exists, check the diff.
+	CONFIRM="0"
+	if [ "$FORCE_OVERWRITE" != "1" ]; then
+		if [ -f "$dest" ]; then
+			if [ -f "$backup" ]; then
+				if ! diff -c "$backup" "$dest"; then
+					echo "WARNING: $dest changed since last run."
+					CONFIRM="1"
+				fi
+			else
+				echo "WARNING: $dest not generated by this script."
+				CONFIRM="1"
+			fi
+		fi
+	fi
+	
+	# Confirm continue if overwrite not specified
+	if [ "$CONFIRM" == "1" ]; then
+		read -p "Overwrite it anyway? (y/N) " response
+		[ "$response" != "y" ] && return 1
+	fi
+	
+	# Perform the install.
+	mkdir -p "$(dirname "$backup")" "$(dirname "$dest")"
+	cp "$src" "$dest"
+	cp "$src" "$backup"
+}
+
+
+# Generate the config file with id $1, name $2, and install it in $3.
+function config_file() {
+	id="$1"
+	name="$2"
+	path="$3"
+	m4_file="$4"
+	
+	# Generate the config file.
+	conman_m4 "$m4_file" "/dev/null" "$id" > "$OUT_FILE"
+	
+	# ...and install it.
+	install_file "$OUT_FILE" "$path"
+}
+
+
+################################################################################
+# Executable (World Starts Here)
+################################################################################
+
+# Clear the script/m4 include file
+echo -n > "$SCRIPT_FILE"
+echo -n > "$M4_INCLUDE"
+
+# Give us the fancy double-star glob
+shopt -s globstar
+
+# Find the script plugins
+SH_PLUGINS=("$PLUGIN_DIR"/**/*.sh)
+# Makes less mess if no plugins found
+[ -f "${SH_PLUGINS[0]}" ] || SH_PLUGINS="/dev/null"
+
+# Source all scripts in the scripts directory.
+for script in "${SH_PLUGINS[@]}" ; do
+	[ -x "$script" ] && source $script
+done
+
+# Find the m4 plugins to include
+M4_PLUGINS=("$PLUGIN_DIR"/**/*.m4)
+# Makes less mess if no plugins found
+[ -f "${M4_PLUGINS[0]}" ] || M4_PLUGINS="/dev/null"
+
+# Parse all command line args (including those defined by scripts).
+while (($#)); do 
+	arg=$1
+	shift
+	eval "${arguments[$arg]}"
+done
+
+# Process all m4 files that aren't '*.inc.m4'
+find "$CONFIG_DIR" -name '*.m4' '!' -name '*.inc.m4' | while read m4_file; do
+	# Generate and run the corresponding script.
+	conman_m4 "$m4_file" "$SCRIPT_FILE" "" || continue
+done
+
+# Execute the commands required by all the m4 files.
+source "$SCRIPT_FILE"
+
+# Clean up
+rm "$OUT_FILE" "$SCRIPT_FILE" "$M4_INCLUDE"
