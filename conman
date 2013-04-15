@@ -1,10 +1,5 @@
 #!/bin/bash
 
-
-# Run from ConMan's directory
-cd "$(dirname "$0")"
-
-
 ################################################################################
 # Argument Parsing Utilities
 ################################################################################
@@ -34,6 +29,16 @@ function add_argument_var() {
 	add_argument "$1" "$2=\"\$1\";shift" "$3$DEFAULT_NOTICE"
 }
 
+# Adds an argument which sets an environment variable. Args:
+#  - Argument
+#  - Variable name
+#  - Help string (which is appended with '(Default = ...)'
+function add_argument_path_var() {
+	local CUR_VAL="$(eval "echo \$$2")"
+	[ -n "$CUR_VAL" ] && local DEFAULT_NOTICE=" (Default = $CUR_VAL)"
+	add_argument "$1" "$2=\"\$1\";shift" "$3$DEFAULT_NOTICE"
+}
+
 # Print the help strings for all arguments.
 function print_help() {
 	echo "Usage: $0 [OPTION]"
@@ -51,24 +56,27 @@ add_argument -h "print_help; exit 1" "Display this message."
 # Constants & File/Dir Definitions
 ################################################################################
 
+# Directory ConMan is installed in
+CONMAN_DIR="$(dirname "$0")"
+
 # The location that is scanned for m4 files to use for configuration
-CONFIG_DIR="`pwd`/configs"
+CONFIG_DIR="$CONMAN_DIR/configs"
 add_argument_var -t "CONFIG_DIR" "Override the config template directory."
 
 # The location of the local configuration file.
-LOCAL_CONFIG_FILE="`pwd`/local_config.m4"
+LOCAL_CONFIG_FILE="$CONMAN_DIR/local_config.m4"
 add_argument_var -c "LOCAL_CONFIG_FILE" "Set the local config file location."
 
 # The location of the local configuration file.
-GLOBAL_CONFIG_FILE="`pwd`/config.m4"
+GLOBAL_CONFIG_FILE="$CONMAN_DIR/config.m4"
 add_argument_var -C "GLOBAL_CONFIG_FILE" "Set the global config file location."
 
 # Location where plugins for ConMan live.
-PLUGIN_DIR="`pwd`/plugins"
+PLUGIN_DIR="$CONMAN_DIR/plugins"
 add_argument_var -p "PLUGIN_DIR" "Override ConMan plugin directory."
 
 # Location where backups of installed scripts are kept
-BACKUP_DIR="`pwd`/backups"
+BACKUP_DIR="$CONMAN_DIR/backups"
 add_argument_var -b "BACKUP_DIR" "Override backup file directory."
 
 # Bool specifying whether files should be overwritten without confirmation
@@ -121,7 +129,7 @@ function conman_m4() {
 		-DSCRIPT_FILE="$script_file" \
 		-DOUTPUT_ID="$id"            \
 		-I"$CONFIG_DIR"              \
-		"header.m4"                  \
+		"$CONMAN_DIR/header.m4"      \
 		"$M4_INCLUDE"                \
 		"$LOCAL_CONFIG_FILE"         \
 		"$GLOBAL_CONFIG_FILE"        \
