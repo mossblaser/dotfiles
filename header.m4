@@ -85,6 +85,6 @@ dnl   - File name -- Where to put this section.
 dnl   - Enabled (optional) -- Boolean expression; should this be generated?
 define(CONFIG_FILE,
 `IF_COMPUTER(eval(ifelse($3,,1,$3)),
-	`ADD_TO_SCRIPT(config_file NEXT_ID $1 $2 M4_FILE)')dnl
+	`ADD_TO_SCRIPT(config_file NEXT_ID \"$1\" $2 M4_FILE)')dnl
 ifelse(NEXT_ID, OUTPUT_ID, `divert(0)', `divert(-1)')dnl
 INC_NEXT_ID()dnl')
