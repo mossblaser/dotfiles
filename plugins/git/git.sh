@@ -12,8 +12,11 @@ function update_git_repo() {
 	mkdir -p "$path"
 	(
 		cd "$path"
-		git init -q
-		git pull "$remote"
+		if [ -d .git ]; then
+			git pull
+		else
+			git clone "$remote" .
+		fi
 	)
 }
 
