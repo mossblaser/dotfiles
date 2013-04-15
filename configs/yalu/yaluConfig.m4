@@ -1,4 +1,5 @@
 IF_COMPUTER(USES_YALU, `GIT_REPO(~/.yalu, git@github.com:mossblaser/YALU.git)')
+IF_COMPUTER(USES_YALU, `syscmd(ln -fs ~/.yalu/fvwmConfig ~/.fvwm2rc)')
 CONFIG_FILE(yaluConfig, ~/.yalu/yaluConfig, USES_YALU)
 
 SetEnv yaluBrowser "google-chrome"

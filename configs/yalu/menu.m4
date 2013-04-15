@@ -14,9 +14,8 @@ GnuP&lot	xterm gnuplot
 &Pidgin	pidgin
 
 &Rhythmbox	rhythmbox
-
 ON_COMPUTER(PERSONAL)
+
 Shelf We&b	ssh shelf@shelf "export DISPLAY=\"0:0\"; chromium $(xclip -o)"
 Room &Headphone Toggle {1474569}	bash /home/jonathan/bin/headphone_toggle.sh
 END_COMPUTER()
-
