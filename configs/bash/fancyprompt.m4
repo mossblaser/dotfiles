@@ -1,10 +1,8 @@
 CONFIG_FILE(fancyprompt, ~/bin/fancyprompt)
-
 #!/usr/bin/bash
 
 RESET="\[\033[000m\]"
 RED="\[\033[000;031m\]"
-
 
 function colour_code_user_machine {
 	case "$USER" in
