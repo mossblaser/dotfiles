@@ -3,6 +3,9 @@ CONFIG_FILE(bashrc, ~/.bashrc)
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+# Use bits bash_profile too
+. ~/.bash_profile
+
 # don't put duplicate lines in the history. See bash(1) for more options
 # force ignoredups and ignorespace
 export HISTCONTROL=ignoreboth
@@ -41,6 +44,8 @@ ON_COMPUTER(PERSONAL)
 # SHET Support
 export SHET_HOST="shelf"
 #export SHET_HTTP_URL="http://18sg.net:8080/"
-. shet_complete
+if which shet_complete > /dev/null; then
+	. shet_complete
+fi
 END_COMPUTER()
 

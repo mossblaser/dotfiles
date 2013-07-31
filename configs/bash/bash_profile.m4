@@ -20,9 +20,6 @@ else
 	BROWSER=elinks
 fi
 
-# Load the bashrc too
-. ~/.bashrc
-
 ON_COMPUTER(THINKPAD)
 # Auto-start the graphical session on login
 [ -z "$DISPLAY" -a "$(tty)" = "/dev/tty1" ] && startx

@@ -1,5 +1,5 @@
 CONFIG_FILE(fancyprompt, ~/bin/fancyprompt)
-#!/usr/bin/bash
+#!/bin/bash
 
 RESET="\[\033[000m\]"
 RED="\[\033[000;031m\]"
@@ -14,7 +14,7 @@ function colour_code_user_machine {
 	
 	case "$HOSTNAME" in
 		jonathan*)   MACHINE_COLOUR=6;;
-		+(lf|gfpc)*) MACHINE_COLOUR=2;;
+		lf*|gfpc*)   MACHINE_COLOUR=2;;
 		"soba")      MACHINE_COLOUR=3;;
 		"server")    MACHINE_COLOUR=1;;
 		*)           MACHINE_COLOUR=0;;
