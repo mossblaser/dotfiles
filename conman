@@ -57,7 +57,7 @@ add_argument -h "print_help; exit 1" "Display this message."
 ################################################################################
 
 # Directory ConMan is installed in
-CONMAN_DIR="$(dirname "$0")"
+CONMAN_DIR="$(readlink -e "$(dirname "$0")")"
 
 # The location that is scanned for m4 files to use for configuration
 CONFIG_DIR="$CONMAN_DIR/configs"
