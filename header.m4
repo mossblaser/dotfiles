@@ -62,7 +62,7 @@ dnl ============================================================================
 
 dnl Add a command to append commands to the script file which is generated in
 dnl the first pass.
-define(ADD_TO_SCRIPT, `syscmd(echo "$1" >> "SCRIPT_FILE")')
+define(ADD_TO_SCRIPT, `syscmd(echo "M4""_FILE=\"$(readlink -e "M4_FILE")\"" >> "SCRIPT_FILE")syscmd(echo "$1" >> "SCRIPT_FILE")')
 
 dnl Convert a set of M4 arguments into a space-seperated list of quoted (but not
 dnl propperly escaped) strings for the purpose of expanding to an argument list.

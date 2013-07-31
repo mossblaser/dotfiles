@@ -143,6 +143,22 @@ various VIM plugins::
 
 The plugin can be disabled using the ``-g`` flag.
 
+Binary File Installer
+`````````````````````
+
+The ``INSTALL_BINARY(src, dst)`` macro copies a binary file (make sure it
+doesn't end in .m4 to prevent conman processing it as a template) at the
+location "src" (relative to the m4 file's directory) into dst. For example, this
+installs a nice font for vim::
+	
+	CONFIG_FILE(my vim configs, ~/.vimrc)
+	
+	" stuff for my .vimrc goes here as usual
+	
+	INSTALL_BINARY(Monaco_Linux.ttf,~/.fonts/)
+
+The plugin can be disabled using the ``-B`` flag.
+
 
 For Plugin Developers
 ---------------------
@@ -179,6 +195,9 @@ The file ``/tmp/some_file`` will be touched.
 
 Warning: Arguments given to the m4 wrapper will be (double) quoted but not
 escaped so watch out!
+
+The environment variable $M4_FILE is set with the full path of the m4 file which
+called the the macro.
 
 
 Defining Macros (Advanced)
