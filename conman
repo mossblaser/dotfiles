@@ -83,6 +83,10 @@ add_argument_var -b "BACKUP_DIR" "Override backup file directory."
 FORCE_OVERWRITE=0
 add_argument -f "FORCE_OVERWRITE=1" "Force all files to be updated."
 
+# Bool specifying whether to start editing the named config file
+EDIT_FILE=""
+add_argument_var -e "EDIT_FILE" "Edit the m4 template for a file $EDITOR."
+
 # A file which is populated during the first pass with commands to execute
 # during the second
 SCRIPT_FILE="$(mktemp)"
@@ -197,6 +201,38 @@ function config_file() {
 	install_file "$OUT_FILE" "$path"
 }
 
+################################################################################
+# File Editing Functions
+################################################################################
+
+# Try to edit the template for a file given the scriptfile
+#  1: source filename
+#  2: template name
+function edit_template {
+	EDIT_FILE="$1"
+	SCRIPT_FILE="$2"
+	
+	M4_FILE="$(
+		# Redefine here to edit if the filename matches
+		function config_file() {
+			FILE="$3"
+			M4_FILE="$4"
+			if [ "$(readlink -e "$FILE")" == "$(readlink -e "$EDIT_FILE")" ]; then
+				echo "$M4_FILE"
+			fi
+		}
+		# Test every config_file file in the script
+		eval "$(grep -E "^config_file" "$SCRIPT_FILE")"
+	)"
+	
+	if [ -n "$M4_FILE" ]; then
+		${EDITOR:-vim} "$M4_FILE"
+		return $?
+	else
+		echo "This file was not created by $0!" >> /dev/stderr
+		return 1
+	fi
+}
 
 ################################################################################
 # Executable (World Starts Here)
@@ -237,8 +273,14 @@ find "$CONFIG_DIR" -name '*.m4' '!' -name '*.inc.m4' | while read m4_file; do
 	conman_m4 "$m4_file" "$SCRIPT_FILE" "" || continue
 done
 
-# Execute the commands required by all the m4 files.
-source "$SCRIPT_FILE"
+# Either update everything or attempt to edit the specified file
+if [ -n "$EDIT_FILE" ]; then
+	edit_template "$EDIT_FILE" "$SCRIPT_FILE"
+	exit $?
+else
+	# Execute the commands required by all the m4 files.
+	source "$SCRIPT_FILE"
+fi
 
 # Clean up
 rm "$OUT_FILE" "$SCRIPT_FILE" "$M4_INCLUDE"
