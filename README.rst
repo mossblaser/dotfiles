@@ -101,6 +101,13 @@ You can force ConMan to overwrite files which don't match their backups using
 the ``-f`` option.
 
 
+Quickly editing files
+`````````````````````
+
+Using ``conman -e filename`` will attempt to open the M4 file which created the
+given file in your $EDITOR.
+
+
 Health Warnings
 ---------------
 
