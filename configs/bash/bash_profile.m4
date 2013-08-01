@@ -22,5 +22,5 @@ fi
 
 ON_COMPUTER(THINKPAD)
 # Auto-start the graphical session on login
-[ -z "$DISPLAY" -a "$(tty)" = "/dev/tty1" ] && startx
+#[ -z "$DISPLAY" -a "$(tty)" = "/dev/tty1" ] && startx
 END_COMPUTER()

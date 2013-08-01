@@ -1,5 +1,5 @@
-CONFIG_FILE(xinitrc, ~/.xinitrc)
-# Used by startx to start a session.
+CONFIG_FILE(xsession, ~/.xsession)
+# Used by lightdm to start a session.
 gnome-settings-daemon &
 nm-applet &
 xcompmgr&
