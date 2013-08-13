@@ -125,8 +125,8 @@ END_COMPUTER()
 new_window normal
 new_float  normal
 
-# Hide window borders at the left-and-right edoges of the display
-hide_edge_borders vertical
+# Don't hide window-borders at screen-edges.
+hide_edge_borders none
 
 # Tango-based Colour Scheme
 # class                 border  backgr. text    indicator
