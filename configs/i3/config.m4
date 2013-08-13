@@ -71,6 +71,7 @@ exec --no-startup-id xcompmgr
 PROGRAM(space, dmenu_run)
 
 # Terminals
+PROGRAM(Return,xterm)
 PROGRAM(t,xterm)
 PROGRAM(q,xterm qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
@@ -365,16 +366,13 @@ bar {
 bindsym $mod+F4 kill
 
 
-
-
-
 ################################################################################
 # Exit/Restart
 ################################################################################
 
 # Bodge: use a mode to confirm reset
 mode "Press enter to exit" {
-	bindsym Enter exit
+	bindsym Return exit
 	bindsym Escape mode "default"
 	bindsym $mod+Escape mode "default"
 }
