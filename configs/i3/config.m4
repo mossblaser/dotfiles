@@ -264,6 +264,9 @@ bindcode $mod+ctrl+shift+61 move workspace to output down;   focus output down
 ################################################################################
 # Workspace navigation and movement
 ################################################################################
+ 
+# Switch back and forth if the combo for switching to the same desk is pressed.
+workspace_auto_back_and_forth yes
 
 # Workspace navigation
 forloop(`i', 1, 10, `
@@ -325,11 +328,8 @@ bindsym $mod+grave exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 ################################################################################
 
 bar {
-	# TODO: Make my own magic status line
-	# status_command i3status --config ~/.i3/i3status.conf
-	
-	# Use i3's standard status line generator
-	status_command i3status
+	# Use i3's status line generator with my config
+	status_command i3status --config ~/.i3/i3status.conf
 	
 	# Always visible
 	mode dock
