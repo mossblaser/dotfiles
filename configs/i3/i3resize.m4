@@ -54,12 +54,21 @@ def get_resizeables(target, root = None, split = None):
 	root = root or i3.get_tree()
 	
 	if root["id"] != target["id"]:
-		# If this is a split container, set split
-		if root["layout"] in SPLIT_LAYOUTS:
+		children = root["nodes"]
+		
+		# XXX: Due to the i3 library being absolutely bonkers, this is the only way
+		# to actually count the number of child nodes -- using len on "children"
+		# yields pretty random numbers... WTF!?
+		num_children = 0
+		for child in children:
+			num_children += 1
+		
+		# If this is a split container (which isn't a singleton), set split
+		if root["layout"] in SPLIT_LAYOUTS and num_children > 1:
 			split = root
 		
 		# This window isn't the target, try the children
-		for child in root["nodes"]:
+		for child in children:
 			try:
 				return get_resizeables(target, child, split)
 			except NoTargetWindow:
@@ -88,6 +97,7 @@ def set_size(container, size):
 	tree is given as container.
 	"""
 	parent, child = get_resizeables(container)
+	n = parent["nodes"]
 	
 	# Decide which dimension to resize along
 	dimension = {
