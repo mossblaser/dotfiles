@@ -202,6 +202,8 @@ bindsym $mod+Return fullscreen
 # Window Navigation and Movement
 ################################################################################
 
+bindsym $mod+Tab exec --no-startup-id python ~/.i3/i3winmenu.py
+
 # Create a container around the currently focused window (keys are one row below
 # their corresponding layout changing ones)
 bindsym $mod+z split horizontal; layout tabbed
