@@ -49,3 +49,5 @@ if which shet_complete > /dev/null; then
 fi
 END_COMPUTER()
 
+# Here/There For i3
+. ~/.i3/i3here

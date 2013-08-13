@@ -7,6 +7,16 @@ define(`_forloop',
        `$4`'ifelse($1, `$3', ,
        `define(`$1', incr($1))_forloop(`$1', `$2', `$3', `$4')')')
 --------------------------------------------------------------------------------
+M4 Macro "WRAPEXEC()" expands to the exec wrapper used to launch interactive
+programs
+
+define(`WRAPEXEC',`~/.i3/i3exec')
+--------------------------------------------------------------------------------
+M4 Macro to define program launchers
+define(`PROGRAM',`bindsym $launcher_mod+$1 exec WRAPEXEC() $2')
+--------------------------------------------------------------------------------
+
+
 
 CONFIG_FILE(i3 Window Manager, ~/.i3/config)
 
@@ -58,29 +68,29 @@ exec --no-startup-id xcompmgr
 ################################################################################
 
 # General launcher
-bindsym $launcher_mod+space exec dmenu_run
+PROGRAM(space, dmenu_run)
 
 # Terminals
-bindsym $launcher_mod+t     exec i3-sensible-terminal
-bindsym $launcher_mod+q     exec xterm qalc
-bindsym $launcher_mod+y     exec xterm -e python -i ~/.pythonrc
-bindsym $launcher_mod+l     exec xterm gnuplot
-bindsym $launcher_mod+m     exec xterm maxima
+PROGRAM(t,xterm)
+PROGRAM(q,xterm qalc)
+PROGRAM(y,xterm -e python -i ~/.pythonrc)
+PROGRAM(l,xterm gnuplot)
+PROGRAM(m,xterm maxima)
 
 # Utilities
-bindsym $launcher_mod+e     exec gvim
-bindsym $launcher_mod+w     exec google-chrome
-bindsym $launcher_mod+f     exec nautilus --no-desktop
+PROGRAM(e, gvim)
+PROGRAM(w, google-chrome)
+PROGRAM(f, nautilus --no-desktop)
 
 # Graphics
-bindsym $launcher_mod+g     exec gimp
-bindsym $launcher_mod+i     exec inkscape
+PROGRAM(g, gimp)
+PROGRAM(i, inkscape)
 
 # IM
-bindsym $launcher_mod+p     exec pidgin
+PROGRAM(p, pidgin)
 
 # Media
-bindsym $launcher_mod+r     exec rhythmbox
+PROGRAM(r, rhythmbox)
 
 
 ################################################################################
@@ -368,9 +378,11 @@ mode "Press enter to exit" {
 	bindsym Escape mode "default"
 	bindsym $mod+Escape mode "default"
 }
-
 bindsym $mod+Escape mode "Press enter to exit"
 
 
 # Restart i3 in-place
 bindsym $mod+shift+r restart
+
+# Reload i3 config file
+bindsym $mod+r reload
