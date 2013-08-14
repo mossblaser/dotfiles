@@ -15,6 +15,11 @@ define(`WRAPEXEC',`~/.i3/i3exec')
 M4 Macro to define program launchers
 define(`PROGRAM',`bindsym $launcher_mod+$1 exec WRAPEXEC() $2')
 --------------------------------------------------------------------------------
+M4 Macro to define auto-start programs for specific workspaces by number or name
+define(`AUTO_START_WS',`exec python ~/.i3/i3wslaunch.py $1 "exec WRAPEXEC() $2"')
+define(`AUTO_START_WS_NAME',`AUTO_START_WS(-n $1,$2)')
+define(`AUTO_START_WS_NUM',`AUTO_START_WS(-N $1,$2)')
+--------------------------------------------------------------------------------
 
 
 
@@ -50,6 +55,10 @@ set $float_move_rate 25
 # Start the compositing manager
 exec --no-startup-id xcompmgr
 
+# Auto-start for specific desks
+AUTO_START_WS_NUM( 8, google-chrome --new-window 'http://grooveshark.com/')
+AUTO_START_WS_NUM( 9, google-chrome --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.com/app')
+AUTO_START_WS_NUM(10, pidgin)
 
 ################################################################################
 # Program launchers
@@ -317,7 +326,7 @@ bindsym $mod+grave exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 bindsym XF86Launch1 workspace "Cube Mode"
 
 # Auto-launch a chrome session there when it is opened empty
-exec python ~/.i3/i3wslaunch.py -n "Cube Mode" "exec WRAPEXEC() google-chrome"
+AUTO_START_WS_NAME("Cube Mode", google-chrome --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
 
 
 ################################################################################
