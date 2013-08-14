@@ -61,7 +61,7 @@ exec --no-startup-id xcompmgr
 
 # Auto-start for specific desks
 AUTO_START_WS_NUM( 8, google-chrome --new-window 'http://grooveshark.com/')
-AUTO_START_WS_NUM( 9, google-chrome --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.com/app')
+AUTO_START_WS_NUM( 9, google-chrome --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
 AUTO_START_WS_NUM(10, pidgin)
 
 ################################################################################
@@ -124,7 +124,7 @@ hide_edge_borders none
 # Tango-based Colour Scheme
 # class                 border  backgr. text    indicator
 client.focused          #3465a4 #285577 #eeeeec #729fcf
-client.focused_inactive #555753 #2e3436 #babdb6 #484e50
+client.focused_inactive #3465a4 #2e3436 #babdb6 #484e50
 client.unfocused        #2e3436 #2e3436 #babdb6 #292d2e
 client.urgent           #fcaf3e #f57900 #eeeeec #fcaf3e
 
