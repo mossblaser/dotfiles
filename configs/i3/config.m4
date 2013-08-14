@@ -249,6 +249,8 @@ bindcode $mod+ctrl+shift+61 move workspace to output down;   focus output down
 # Switch back and forth if the combo for switching to the same desk is pressed.
 workspace_auto_back_and_forth yes
 
+
+
 # Workspace navigation
 forloop(`i', 1, 10, `
 	# Switch to workspace i
@@ -258,6 +260,9 @@ forloop(`i', 1, 10, `
 	bindsym $mod+shift+eval(i%10) move container to workspace number i;  workspace number i ; exec --no-startup-id ~/.i3/i3nameworkspace
 ')
 
+# As above but back-and-forth on mod+-
+bindsym $mod+minus workspace back_and_forth ; exec --no-startup-id ~/.i3/i3nameworkspace
+bindsym $mod+shift+minus move container to workspace back_and_forth;  workspace back_and_forth; exec --no-startup-id ~/.i3/i3nameworkspace
 
 ################################################################################
 # Resize
