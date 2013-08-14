@@ -16,7 +16,11 @@ M4 Macro to define program launchers
 define(`PROGRAM',`bindsym $launcher_mod+$1 exec WRAPEXEC() $2')
 --------------------------------------------------------------------------------
 M4 Macro to define auto-start programs for specific workspaces by number or name
-define(`AUTO_START_WS',`exec python ~/.i3/i3wslaunch.py $1 "exec WRAPEXEC() $2"')
+
+exec_always used because restarting i3 crashes these programs.
+define(`AUTO_START_WS',`exec_always python ~/.i3/i3wslaunch.py $1 "exec WRAPEXEC() $2"')
+
+Convenient aliases
 define(`AUTO_START_WS_NAME',`AUTO_START_WS(-n $1,$2)')
 define(`AUTO_START_WS_NUM',`AUTO_START_WS(-N $1,$2)')
 --------------------------------------------------------------------------------
