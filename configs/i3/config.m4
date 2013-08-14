@@ -42,18 +42,6 @@ set $float_resize_rate 25
 # Ratfloat_e at which floating windows are moved per step
 set $float_move_rate 25
 
-# Names for each workspace
-set $ws_1   1
-set $ws_2   2
-set $ws_3   3
-set $ws_4   4
-set $ws_5   5
-set $ws_6   6
-set $ws_7   7
-set $ws_8   8
-set $ws_9   9: Mail
-set $ws_10 10: IM
-
 
 ################################################################################
 # Auto-start
@@ -92,15 +80,6 @@ PROGRAM(p, pidgin)
 
 # Media
 PROGRAM(r, rhythmbox)
-
-
-################################################################################
-# Workspaces
-################################################################################
-
-# Automatic workspace placements
-assign [class="^Pidgin$"] $ws_10
-assign [class="^Skype$"]  $ws_10
 
 
 ################################################################################
@@ -273,10 +252,10 @@ workspace_auto_back_and_forth yes
 # Workspace navigation
 forloop(`i', 1, 10, `
 	# Switch to workspace i
-	bindsym $mod+eval(i%10) workspace $ws_`'i
+	bindsym $mod+eval(i%10) workspace number i ; exec --no-startup-id ~/.i3/i3nameworkspace
 	
 	# Move focused container to workspace i and move there
-	bindsym $mod+shift+eval(i%10) move container to workspace $ws_`'i;  workspace $ws_`'i
+	bindsym $mod+shift+eval(i%10) move container to workspace number i;  workspace number i ; exec --no-startup-id ~/.i3/i3nameworkspace
 ')
 
 
@@ -386,3 +365,4 @@ bindsym $mod+shift+r restart
 
 # Reload i3 config file
 bindsym $mod+r reload
+
