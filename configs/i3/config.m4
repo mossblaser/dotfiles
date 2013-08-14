@@ -310,6 +310,17 @@ bindsym $mod+grave exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 
 
 ################################################################################
+# "Cube Mode"
+################################################################################
+
+# Toggle to-and-from the ann-marie-mode using the ThinkVantage button
+bindsym XF86Launch1 workspace "Cube Mode"
+
+# Auto-launch a chrome session there when it is opened empty
+exec python ~/.i3/i3wslaunch.py -n "Cube Mode" "exec WRAPEXEC() google-chrome"
+
+
+################################################################################
 # i3bar Config
 ################################################################################
 
