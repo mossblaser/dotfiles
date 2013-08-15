@@ -173,10 +173,10 @@ force_focus_wrapping no
 # f = forward
 # s = stacking
 # a = ...tabbed?
-bindsym $mod+a layout tabbed
-bindsym $mod+s layout stacking
-bindsym $mod+d layout splitv
-bindsym $mod+f layout splith
+bindsym $mod+z layout tabbed
+bindsym $mod+x layout stacking
+bindsym $mod+c layout splitv
+bindsym $mod+v layout splith
 
 
 ################################################################################
@@ -198,10 +198,10 @@ bindsym $mod+Tab exec --no-startup-id python ~/.i3/i3winmenu.py
 
 # Create a container around the currently focused window (keys are one row below
 # their corresponding layout changing ones)
-bindsym $mod+z split horizontal; layout tabbed
-bindsym $mod+x split horizontal; layout stacking
-bindsym $mod+c split vertical
-bindsym $mod+v split horizontal
+bindsym $mod+a split horizontal; layout tabbed
+bindsym $mod+s split vertical;   layout stacking
+bindsym $mod+d split vertical
+bindsym $mod+f split horizontal
 
 # Directional focus navigation commands (vim + arrow versions)
 bindsym $mod+h     focus left
@@ -305,6 +305,7 @@ mode "resize" {
 	bindsym Return     mode "default"
 	bindsym Escape     mode "default"
 	bindsym $mod+space mode "default"
+	bindsym space      mode "default"
 }
 
 # Enter resize mode
