@@ -36,5 +36,5 @@ load {
 }
 
 time {
-	format = " %Y-%m-%d %I:%M %P "
+	format = " %d-%m-%Y %I:%M %P "
 }
