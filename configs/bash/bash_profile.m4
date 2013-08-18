@@ -11,6 +11,9 @@ END_COMPUTER()
 # We want conman to be in the path
 [ -d "$HOME/.dotfiles" ] && export PATH="$HOME/.dotfiles:$PATH"
 
+# We want jhnet to be in the path
+[ -d "$HOME/Programing/Web/Jhnet13/util" ] && export PATH="$HOME/Programing/Web/Jhnet13/util:$PATH"
+
 # Default programs
 EDITOR="vim"
 VISUAL="vim"
