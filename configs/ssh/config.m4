@@ -36,3 +36,7 @@ Host home
 
 Host bitbucket.org
  User mossblaser
+
+Host pi
+	HostName raspberrypi
+	User pi
