@@ -35,6 +35,10 @@ function there() {
 	[ -f "$PWD_FILE" ] && source "$PWD_FILE"
 }
 
+CONFIG_FILE(Just a file version of the "here" command, ~/.i3/here_cmd)
+source ~/.i3/i3here
+here "$@"
+
 CONFIG_FILE(Set the current working directory , ~/.i3/i3exec)
 source ~/.i3/i3here
 there

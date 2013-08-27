@@ -277,6 +277,18 @@ forloop(`i', 1, 10, `
 bindsym $mod+minus workspace back_and_forth ; exec --no-startup-id ~/.i3/i3nameworkspace
 bindsym $mod+shift+minus move container to workspace back_and_forth;  workspace back_and_forth; exec --no-startup-id ~/.i3/i3nameworkspace
 
+
+################################################################################
+# Workspace renaming
+################################################################################
+
+# Set name keeping current directory
+bindsym $mod+n exec --no-startup-id WRAPEXEC() ~/.i3/here_cmd "$(echo -n | dmenu)"
+
+# Clear name, moving to home directory
+bindsym $mod+shift+N exec --no-startup-id ~/.i3/here_cmd
+
+
 ################################################################################
 # Resize
 ################################################################################
