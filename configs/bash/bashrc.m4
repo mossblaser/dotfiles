@@ -44,9 +44,7 @@ ON_COMPUTER(PERSONAL)
 # SHET Support
 export SHET_HOST="shelf"
 #export SHET_HTTP_URL="http://18sg.net:8080/"
-if which shet_complete > /dev/null; then
-	. shet_complete
-fi
+. shet_complete 2>/dev/null
 END_COMPUTER()
 
 # Here/There For i3
