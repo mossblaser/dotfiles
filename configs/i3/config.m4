@@ -283,10 +283,10 @@ bindsym $mod+shift+minus move container to workspace back_and_forth;  workspace 
 ################################################################################
 
 # Set name keeping current directory
-bindsym $mod+n exec --no-startup-id WRAPEXEC() ~/.i3/here_cmd "$(echo -n | dmenu)"
+bindsym $mod+w exec --no-startup-id WRAPEXEC() ~/.i3/here_cmd "$(echo -n | dmenu -p "Workspace Label: ")"
 
 # Clear name, moving to home directory
-bindsym $mod+shift+N exec --no-startup-id ~/.i3/here_cmd
+bindsym $mod+shift+W exec --no-startup-id ~/.i3/here_cmd
 
 
 ################################################################################
