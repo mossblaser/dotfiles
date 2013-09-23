@@ -1,4 +1,8 @@
 --------------------------------------------------------------------------------
+Should arrow keys be used in bindings (or should the VIM-style bindings be the
+only ones available)? (Comment out to disable)
+dnl define(`USE_ARROWS')
+--------------------------------------------------------------------------------
 M4 Macro Loop constructs for the more repetative commands:
 
 define(`forloop',
@@ -205,26 +209,26 @@ bindsym $mod+f split horizontal
 
 # Directional focus navigation commands (vim + arrow versions)
 bindsym $mod+h     focus left
-bindsym $mod+Left  focus left
+ifdef(`USE_ARROWS',bindsym $mod+Left  focus left)
 bindsym $mod+l     focus right
-bindsym $mod+Right focus right
+ifdef(`USE_ARROWS',bindsym $mod+Right focus right)
 bindsym $mod+k     focus up
-bindsym $mod+Up    focus up
+ifdef(`USE_ARROWS',bindsym $mod+Up    focus up)
 bindsym $mod+j     focus down
-bindsym $mod+Down  focus down
+ifdef(`USE_ARROWS',bindsym $mod+Down  focus down)
 
 # Toggle between floating and tiling window layers
 bindsym $mod+t focus mode_toggle
 
 # Directional movement commands (vim + arrow versions)
 bindsym $mod+shift+h     move left  $float_move_rate px
-bindsym $mod+shift+Left  move left  $float_move_rate px
+ifdef(`USE_ARROWS',bindsym $mod+shift+Left  move left  $float_move_rate px)
 bindsym $mod+shift+l     move right $float_move_rate px
-bindsym $mod+shift+Right move right $float_move_rate px
+ifdef(`USE_ARROWS',bindsym $mod+shift+Right move right $float_move_rate px)
 bindsym $mod+shift+k     move up    $float_move_rate px
-bindsym $mod+shift+Up    move up    $float_move_rate px
+ifdef(`USE_ARROWS',bindsym $mod+shift+Up    move up    $float_move_rate px)
 bindsym $mod+shift+j     move down  $float_move_rate px
-bindsym $mod+shift+Down  move down  $float_move_rate px
+ifdef(`USE_ARROWS',bindsym $mod+shift+Down  move down  $float_move_rate px)
 
 # Tree traversal
 bindsym $mod+bracketleft  focus parent
@@ -298,15 +302,15 @@ mode "resize" {
 	
 	# Shrink/grow width
 	bindsym h     resize shrink width $float_resize_rate px or $tile_resize_rate ppt
-	bindsym Left  resize shrink width $float_resize_rate px or $tile_resize_rate ppt
+	ifdef(`USE_ARROWS',bindsym Left  resize shrink width $float_resize_rate px or $tile_resize_rate ppt)
 	bindsym l     resize grow   width $float_resize_rate px or $tile_resize_rate ppt
-	bindsym Right resize grow   width $float_resize_rate px or $tile_resize_rate ppt
+	ifdef(`USE_ARROWS',bindsym Right resize grow   width $float_resize_rate px or $tile_resize_rate ppt)
 	
 	# Shrink/grow height
 	bindsym j    resize shrink height $float_resize_rate px or $tile_resize_rate ppt
-	bindsym Up   resize shrink height $float_resize_rate px or $tile_resize_rate ppt
+	ifdef(`USE_ARROWS',bindsym Up   resize shrink height $float_resize_rate px or $tile_resize_rate ppt)
 	bindsym k    resize grow   height $float_resize_rate px or $tile_resize_rate ppt
-	bindsym Down resize grow   height $float_resize_rate px or $tile_resize_rate ppt
+	ifdef(`USE_ARROWS',bindsym Down resize grow   height $float_resize_rate px or $tile_resize_rate ppt)
 	
 	# Resize to absolute percentages using the num keys
 	forloop(`i', 1, 9, `
