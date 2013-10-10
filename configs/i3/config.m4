@@ -419,3 +419,9 @@ bindsym $mod+r reload
 
 workspace 1 output LVDS1
 exec --no-startup-id ~/.i3/i3nameworkspace
+
+################################################################################
+# Default for Boox External Display
+################################################################################
+
+workspace "boox" output DP1
