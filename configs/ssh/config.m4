@@ -1,4 +1,7 @@
 CONFIG_FILE(ssh config, ~/.ssh/config)
+Host e-c07ki*.cs.man.ac.uk
+	User mbax9jh2
+
 Host *.cs.man.ac.uk
 	User heathcj9
 	ForwardX11 yes
@@ -6,19 +9,10 @@ Host *.cs.man.ac.uk
 	StrictHostKeyChecking no
 
 Host uni
-	HostName cdtpc016.cs.man.ac.uk
-	User heathcj9
+	HostName kilburn.cs.man.ac.uk
+	User mbax9jh2
 	ForwardX11 yes
 	ForwardX11Trusted yes
-	StrictHostKeyChecking no
-
-Host mcore48
-	HostName mcore48.cs.man.ac.uk
-	User heathcj9
-
-Host fallout
-	HostName fallout.cs.man.ac.uk
-	User heathcj9
 
 Host jhnet jhnet.co.uk
 	HostName jhnet.co.uk
@@ -40,3 +34,7 @@ Host bitbucket.org
 Host pi
 	HostName raspberrypi
 	User pi
+
+Host stellahd
+	HostName stellahd.cs.man.ac.uk
+	User heathcj9
