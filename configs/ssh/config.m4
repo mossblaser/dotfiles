@@ -1,5 +1,5 @@
 CONFIG_FILE(ssh config, ~/.ssh/config)
-Host e-c07ki* kilburn
+Host e-c07ki* kilburn kilburn.cs.man.ac.uk
 	User mbax9jh2
 	ForwardX11 yes
 	ForwardX11Trusted yes
