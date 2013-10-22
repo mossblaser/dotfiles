@@ -1,5 +1,9 @@
 CONFIG_FILE(bashrc, ~/.bashrc)
 
+# Get our bash profile on SSH shells
+export BASHRC_LOADED="yes"
+[ -z "$BASH_PROFILE_LOADED" ] && . $HOME/.bash_profile
+
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 

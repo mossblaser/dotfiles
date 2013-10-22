@@ -57,7 +57,7 @@ ON_COMPUTER(PERSONAL)
 INSTALL_BINARY(Monaco_Linux.ttf,~/.fonts/)
 set guifont=Monaco\ 7
 ELSE_COMPUTER()
-set guifont=Monospace\ 10
+set guifont=Monospace\ 8
 END_COMPUTER()
 " Turn off the toolbar
 set guioptions-=T

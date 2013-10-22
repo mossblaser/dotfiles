@@ -1,14 +1,10 @@
 CONFIG_FILE(ssh config, ~/.ssh/config)
 Host e-c07ki* kilburn kilburn.cs.man.ac.uk
 	User mbax9jh2
-	ForwardX11 yes
-	ForwardX11Trusted yes
 	StrictHostKeyChecking no
 
 Host rs0 rs0.cs.man.ac.uk
 	User heathcj9
-	ForwardX11 yes
-	ForwardX11Trusted yes
 	StrictHostKeyChecking no
 
 Host uni
