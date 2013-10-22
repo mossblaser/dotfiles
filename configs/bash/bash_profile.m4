@@ -29,7 +29,8 @@ else
 fi
 
 # Also get our bashrc on login shells.
-. $HOME/.bashrc
+export BASH_PROFILE_LOADED="yes"
+[ -z "$BASHRC_LOADED" ] && . $HOME/.bashrc
 
 ON_COMPUTER(THINKPAD)
 # Auto-start the graphical session on login
