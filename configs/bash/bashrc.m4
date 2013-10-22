@@ -3,9 +3,6 @@ CONFIG_FILE(bashrc, ~/.bashrc)
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-# Use bits bash_profile too
-. ~/.bash_profile
-
 # don't put duplicate lines in the history. See bash(1) for more options
 # force ignoredups and ignorespace
 export HISTCONTROL=ignoreboth

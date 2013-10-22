@@ -28,6 +28,9 @@ else
 	BROWSER=elinks
 fi
 
+# Also get our bashrc on login shells.
+. $HOME/.bashrc
+
 ON_COMPUTER(THINKPAD)
 # Auto-start the graphical session on login
 #[ -z "$DISPLAY" -a "$(tty)" = "/dev/tty1" ] && startx

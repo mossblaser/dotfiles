@@ -1,7 +1,9 @@
 CONFIG_FILE(Default Applications, ~/.local/share/applications/mimeapps.list)
 [Added Associations]
 application/pdf=evince.desktop;
+ON_COMPUTER(USES_DEBIAN)
 application/x-deb=gdebi.desktop;
+END_COMPUTER()
 image/png=eog.desktop;
 image/jpeg=eog.desktop;
 image/bmp=eog.desktop;
