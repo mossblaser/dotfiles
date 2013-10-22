@@ -18,6 +18,17 @@ END_COMPUTER()
 [ -d "$HOME/Programing/libmaple/arm/bin" ] && export PATH="$HOME/Programing/libmaple/arm/bin:$PATH"
 [ -d "$HOME/Programing/libmaple" ] && export LIB_MAPLE_HOME="$HOME/Programing/libmaple"
 
+ON_COMPUTER(UNI_TEACHING | UNI_RESEARCH)
+# Various libraries installed the hard way in uni need to be in the path
+export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/bin/libconfig/lib:$HOME/bin/check/lib"
+export CPPFLAGS="$CPPFLAGS -I$HOME/bin/check/include -I$HOME/bin/libconfig/include"
+export LDFLAGS="$LDFLAGS -L$HOME/bin/check/lib -L$HOME/bin/libconfig/lib"
+export PKG_CONFIG_PATH="PKG_CONFIG_PATH:$HOME/bin/libconfig/lib/pkgconfig"
+END_COMPUTER()
+
+# Speedy/debugable defaults for CFLAGS
+export CFLAGS="$CFLAGS -g -O3"
+
 # Default programs
 EDITOR="vim"
 VISUAL="vim"
