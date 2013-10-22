@@ -3,4 +3,4 @@ CONFIG_FILE(gitconfig, ~/.gitconfig)
 	name = Jonathan Heathcote
 	email = mail@jhnet.co.uk
 [push]
-	default = simple
+	default = matching
