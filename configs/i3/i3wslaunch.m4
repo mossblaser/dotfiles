@@ -16,6 +16,7 @@ Usage examples::
 
 import signal
 import sys
+import time
 
 import i3
 
@@ -66,6 +67,8 @@ if __name__=="__main__":
 	number = options.number
 	i3_command = " ".join(args)
 	
-	callback = lambda: i3.command(i3_command)
+	def callback():
+		time.sleep(0.5)
+		i3.command(i3_command)
 	
 	when_workspace_created(callback, name, number)
