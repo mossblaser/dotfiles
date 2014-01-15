@@ -3,6 +3,7 @@ A macro which produces a line of shell to get the current workspace name.
 define(GET_WS_PROP,`i3-msg -t GET_WORKSPACES | jq -r "map(select(.focused == true)) | .[0][\"$1\"]"')
 --------------------------------------------------------------------------------
 CONFIG_FILE(Sourceable script for setting workspace directories, ~/.i3/i3here)
+#!/bin/bash
 # Source this (e.g. in bashrc) to provide here/there
 
 function here() {
@@ -36,15 +37,18 @@ function there() {
 }
 
 CONFIG_FILE(Just a file version of the "here" command, ~/.i3/here_cmd)
+#!/bin/bash
 source ~/.i3/i3here
 here "$@"
 
 CONFIG_FILE(Set the current working directory , ~/.i3/i3exec)
+#!/bin/bash
 source ~/.i3/i3here
 there
 exec "$@"
 
 CONFIG_FILE(Rename the current workspace based on the here directory, ~/.i3/i3nameworkspace)
+#!/bin/bash
 # Move into the current directory
 source ~/.i3/i3here
 there

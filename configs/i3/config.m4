@@ -81,7 +81,6 @@ PROGRAM(t,xterm)
 PROGRAM(q,xterm qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
 PROGRAM(l,xterm gnuplot)
-PROGRAM(m,xterm maxima)
 
 # Utilities
 PROGRAM(e, gvim)
@@ -97,6 +96,9 @@ PROGRAM(p, pidgin)
 
 # Media
 PROGRAM(r, rhythmbox)
+
+# Maths
+PROGRAM(m,wxmaxima)
 
 
 ################################################################################
