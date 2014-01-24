@@ -9,7 +9,7 @@ alias ct="clear; tree"
 alias rmt='find \( -name "*.class" -o -name "*.pyc" -o -name "*~" -o -name "nohup.out" -o -name "*.o" -o -name "*.os" -o -name ".*.swo" \) -delete'
 
 alias gs="git status"
-alias gd="git diff --color=auto"
+alias gd="git diff --color"
 
 # Directory changing
 function .. { cd ..; }
