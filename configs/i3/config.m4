@@ -80,7 +80,7 @@ PROGRAM(Return,xterm)
 PROGRAM(t,xterm)
 PROGRAM(q,xterm qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
-PROGRAM(l,xterm gnuplot)
+PROGRAM(l,xterm -e rlwrap -a -c gnuplot)
 
 # Utilities
 PROGRAM(e, gvim)
@@ -334,11 +334,13 @@ bindsym $mod+space mode "resize"
 # Marks
 ################################################################################
 
-# Allow the user to specify a single-char mark for a window
-bindsym $mod+m exec i3-input -l 1 -F 'mark %s' -P 'Set Mark: '
+# Allow the user to specify a single-char mark for a window (not quite the vim
+# convention).
+bindsym $mod+shift+m exec i3-input -l 1 -F 'mark %s' -P 'Set Mark: '
 
-# Allow the user to switch to a single-char marked window
-bindsym $mod+grave exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark: '
+# Allow the user to switch to a single-char marked window (not quite the vim
+# convention).
+bindsym $mod+m     exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark: '
 
 
 ################################################################################
