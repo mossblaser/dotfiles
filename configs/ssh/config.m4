@@ -37,3 +37,11 @@ Host pi
 Host stellahd
 	HostName stellahd.cs.man.ac.uk
 	User heathcj9
+
+Host stella64
+	HostName stella64.cs.man.ac.uk
+	User heathcj9
+
+Host dammam
+	HostName dammam.cs.man.ac.uk
+	User heathcj9
