@@ -63,6 +63,9 @@ set $float_move_rate 25
 # Start the compositing manager
 exec --no-startup-id xcompmgr
 
+# Start network manager
+exec --no-startup-id nm-applet
+
 # Auto-start for specific desks
 AUTO_START_WS_NUM( 8, google-chrome --new-window 'http://grooveshark.com/')
 AUTO_START_WS_NUM( 9, google-chrome --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
