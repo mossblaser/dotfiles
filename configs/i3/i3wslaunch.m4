@@ -54,18 +54,20 @@ def when_workspace_created(callback, name = None, number = None):
 
 
 if __name__=="__main__":
-	from optparse import OptionParser
-	parser = OptionParser()
-	parser.add_option("-n", "--name", dest="name",
-	                  help="Full name of workspace to monitor.")
-	parser.add_option("-N", "--number", dest="number", type="int",
-	                  help="Full name of workspace number to monitor.")
+	from argparse import ArgumentParser
+	parser = ArgumentParser()
+	parser.add_argument("-n", "--name", dest="name",
+	                    help="Full name of workspace to monitor.")
+	parser.add_argument("-N", "--number", dest="number", type=int,
+	                    help="Full name of workspace number to monitor.")
+	parser.add_argument("command", nargs="+",
+	                    help="The command to execute.")
 	
-	(options, args) = parser.parse_args()
+	args = parser.parse_args()
 	
-	name   = options.name
-	number = options.number
-	i3_command = " ".join(args)
+	name   = args.name
+	number = args.number
+	i3_command = " ".join(args.command)
 	
 	def callback():
 		time.sleep(0.5)

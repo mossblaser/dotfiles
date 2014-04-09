@@ -28,6 +28,9 @@ Convenient aliases
 define(`AUTO_START_WS_NAME',`AUTO_START_WS(-n $1,$2)')
 define(`AUTO_START_WS_NUM',`AUTO_START_WS(-N $1,$2)')
 --------------------------------------------------------------------------------
+Google chrome command for different machines.
+define(`CHROME',IF_COMPUTER(USES_ARCH,google-chrome-stable,google-chrome))
+--------------------------------------------------------------------------------
 
 
 
@@ -67,8 +70,8 @@ exec --no-startup-id xcompmgr
 exec --no-startup-id nm-applet
 
 # Auto-start for specific desks
-AUTO_START_WS_NUM( 8, google-chrome --new-window 'http://grooveshark.com/')
-AUTO_START_WS_NUM( 9, google-chrome --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
+AUTO_START_WS_NUM( 8, CHROME --new-window 'http://grooveshark.com/')
+AUTO_START_WS_NUM( 9, CHROME --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
 AUTO_START_WS_NUM(10, pidgin)
 
 ################################################################################
@@ -87,7 +90,7 @@ PROGRAM(l,xterm -e rlwrap -a -c gnuplot)
 
 # Utilities
 PROGRAM(e, gvim)
-PROGRAM(w, google-chrome)
+PROGRAM(w, CHROME)
 PROGRAM(f, nautilus --no-desktop)
 
 # Graphics
@@ -354,7 +357,7 @@ bindsym $mod+m     exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 bindsym XF86Launch1 workspace "Cube Mode"
 
 # Auto-launch a chrome session there when it is opened empty
-AUTO_START_WS_NAME("Cube Mode", google-chrome --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
+AUTO_START_WS_NAME("Cube Mode", CHROME --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
 
 
 ################################################################################
@@ -372,7 +375,12 @@ bar {
 	position bottom
 	
 	# Always show the system tray on the primary display
+	ON_COMPUTER(USES_ARCH)
+	# Arch's i3 package contains a bug which makes tray_output primary not also
+	# match single screens which aren't marked as primary.
+	ELSE_COMPUTER()
 	tray_output primary
+	END_COMPUTER()
 	
 	# Show the workspace buttons
 	workspace_buttons yes
