@@ -374,7 +374,7 @@ bindsym $mod+m     exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 ################################################################################
 
 # Toggle to-and-from the ann-marie-mode using the ThinkVantage button
-bindsym XF86Launch1 workspace "Cube Mode"
+bindsym IF_COMPUTER(THINKPAD,XF86Launch1,$mod+$launcher_mod+space) workspace "Cube Mode"
 
 # Auto-launch a chrome session there when it is opened empty
 AUTO_START_WS_NAME("Cube Mode", CHROME --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
