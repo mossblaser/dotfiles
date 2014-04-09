@@ -1,7 +1,7 @@
 --------------------------------------------------------------------------------
 Define the network interfaces
-DEFINE(`ETHERNET',IF_COMPUTER(USES_ARCH,enp0s25,eth0))
-DEFINE(`WIRELESS',IF_COMPUTER(USES_ARCH,wlp3s0,wlan0))
+define(`ETHERNET',IF_COMPUTER(USES_ARCH,enp0s25,eth0))
+define(`WIRELESS',IF_COMPUTER(USES_ARCH,wlp3s0,wlan0))
 --------------------------------------------------------------------------------
 
 CONFIG_FILE(i3 Status-bar Config, ~/.i3/i3status.conf)
