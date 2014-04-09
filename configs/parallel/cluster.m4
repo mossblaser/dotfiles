@@ -33,7 +33,7 @@ M4 Macro which produces a list of computer names interleaving computers from dif
 Usage: LAB_MACHINES(space seperated lab prefixes, num_required)
 
 define(`LAB_MACHINES', dnl
-`esyscmd(for NUM in $(seq -f "%02.0f" '$2`); do for PREFIX in '$1`; do echo "$PREFIX$NUM"; done; done | head -n'$2`)'
+`esyscmd(for NUM in $(seq -f "%02.0f" '$2`); do for PREFIX in '$1`; do echo "$PREFIX$NUM" 2>/dev/null; done; done | head -n'$2`)'
 )
  
 --------------------------------------------------------------------------------
