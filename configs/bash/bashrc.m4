@@ -36,6 +36,12 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 END_COMPUTER()
+ON_COMPUTER(USES_ARCH)
+# Use magic Arch bash completion
+if [ -r /usr/share/bash-completion/bash_completion ]; then
+	. /usr/share/bash-completion/bash_completion
+fi
+END_COMPUTER()
 
 ON_COMPUTER(PERSONAL)
 export PYTHONSTARTUP=~/.pythonrc
