@@ -75,6 +75,11 @@ exec --no-startup-id pa-applet
 # Start notifications daemon
 exec --no-startup-id dunst
 
+ON_COMPUTER(HOME_COMPUTER)
+# Shelf KVM shortcut
+exec --no-startup-id shelfkvm
+END_COMPUTER()
+
 # Auto-start for specific desks
 AUTO_START_WS_NUM( 8, CHROME --new-window 'http://grooveshark.com/')
 AUTO_START_WS_NUM( 9, CHROME --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')

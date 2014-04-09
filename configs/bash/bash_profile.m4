@@ -26,6 +26,11 @@ export LDFLAGS="$LDFLAGS -L$HOME/bin/check/lib -L$HOME/bin/libconfig/lib"
 export PKG_CONFIG_PATH="PKG_CONFIG_PATH:$HOME/bin/libconfig/lib/pkgconfig"
 END_COMPUTER()
 
+ON_COMPUTER(HOME_COMPUTER)
+# Load up the shelf utilities
+[ -f $HOME/bin/shelf ] && . $HOME/bin/shelf
+END_COMPUTER()
+
 # Speedy/debugable defaults for CFLAGS
 export CFLAGS="$CFLAGS -g -O3"
 
