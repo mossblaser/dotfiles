@@ -30,13 +30,13 @@ END_COMPUTER()
 export CFLAGS="$CFLAGS -g -O3"
 
 # Default programs
-EDITOR="vim"
-VISUAL="vim"
-PAGER="less"
+export EDITOR="vim"
+export VISUAL="vim"
+export PAGER="less"
 if [ -n "$DISPLAY" ]; then
-	BROWSER=google-chrome
+	export BROWSER=google-chrome
 else
-	BROWSER=elinks
+	export BROWSER=elinks
 fi
 
 # Also get our bashrc on login shells.

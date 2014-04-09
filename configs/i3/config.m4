@@ -69,10 +69,25 @@ exec --no-startup-id xcompmgr
 # Start network manager
 exec --no-startup-id nm-applet
 
+# Start pulse-audio applet
+exec --no-startup-id pa-applet
+
+# Start notifications daemon
+exec --no-startup-id dunst
+
 # Auto-start for specific desks
 AUTO_START_WS_NUM( 8, CHROME --new-window 'http://grooveshark.com/')
 AUTO_START_WS_NUM( 9, CHROME --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
 AUTO_START_WS_NUM(10, pidgin)
+
+################################################################################
+# Hardware Hotkeys
+################################################################################
+ON_COMPUTER(USES_ARCH)
+# Brightness control
+bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 -time 0
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 -time 0
+END_COMPUTER()
 
 ################################################################################
 # Program launchers
