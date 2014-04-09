@@ -115,7 +115,7 @@ PROGRAM(l,xterm -e rlwrap -a -c gnuplot)
 # Utilities
 PROGRAM(e, gvim)
 PROGRAM(w, CHROME)
-PROGRAM(f, nautilus --no-desktop)
+PROGRAM(f, IF_COMPUTER(USES_ARCH,nemo --no-desktop,nautilus --no-desktop))
 
 # Graphics
 PROGRAM(g, gimp)
