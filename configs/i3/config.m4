@@ -92,6 +92,10 @@ ON_COMPUTER(USES_ARCH)
 # Brightness control
 bindsym XF86MonBrightnessUp   exec --no-startup-id xbacklight -inc 10 -time 0
 bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 10 -time 0
+
+# Screenshot
+bindsym Print      exec --no-startup-id scrot
+bindsym Mod1+Print exec --no-startup-id scrot -s
 END_COMPUTER()
 
 ################################################################################
