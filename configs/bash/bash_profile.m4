@@ -15,7 +15,6 @@ END_COMPUTER()
 [ -d "$HOME/Programing/Web/Jhnet13/util" ] && export PATH="$HOME/Programing/Web/Jhnet13/util:$PATH"
 
 # We want the maple toolchain to be inthe path
-[ -d "$HOME/Programing/libmaple/arm/bin" ] && export PATH="$HOME/Programing/libmaple/arm/bin:$PATH"
 [ -d "$HOME/Programing/libmaple" ] && export LIB_MAPLE_HOME="$HOME/Programing/libmaple"
 
 ON_COMPUTER(UNI_TEACHING | UNI_RESEARCH)
