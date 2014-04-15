@@ -110,6 +110,7 @@ PROGRAM(Return,xterm)
 PROGRAM(t,xterm)
 PROGRAM(q,xterm qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
+PROGRAM(Shift+y,xterm -e python2 -i ~/.pythonrc)
 PROGRAM(l,xterm -e rlwrap -a -c gnuplot)
 
 # Utilities

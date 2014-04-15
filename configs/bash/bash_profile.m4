@@ -17,6 +17,9 @@ END_COMPUTER()
 # We want the maple toolchain to be inthe path
 [ -d "$HOME/Programing/libmaple" ] && export LIB_MAPLE_HOME="$HOME/Programing/libmaple"
 
+# ARM embedded cross compiler
+[ -d "$HOME/bin/arm-2013.05/bin" ] && export PATH="$PATH:$HOME/bin/arm-2013.05/bin"
+
 ON_COMPUTER(UNI_TEACHING | UNI_RESEARCH)
 # Various libraries installed the hard way in uni need to be in the path
 export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:$HOME/bin/libconfig/lib:$HOME/bin/check/lib"
