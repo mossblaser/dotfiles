@@ -111,7 +111,7 @@ PROGRAM(t,xterm)
 PROGRAM(q,xterm qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
 PROGRAM(Shift+y,xterm -e python2 -i ~/.pythonrc)
-PROGRAM(l,xterm -e rlwrap -a -c gnuplot)
+PROGRAM(l,xterm -e IF_COMPUTER(USES_DEBIAN,rlwrap -a -c ,)gnuplot)
 
 # Utilities
 PROGRAM(e, gvim)
