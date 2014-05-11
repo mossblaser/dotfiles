@@ -45,8 +45,9 @@ nnoremap O O<Space><BS>
 " Autoindent by copying previous line
 set copyindent
 
-" enable line numbers
-set nu
+" enable line hybrid relative linenumbers
+set number
+set relativenumber
 
 " I'm british...
 set spelllang=en_gb
