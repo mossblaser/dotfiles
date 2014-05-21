@@ -36,6 +36,9 @@ END_COMPUTER()
 # Speedy/debugable defaults for CFLAGS
 export CFLAGS="$CFLAGS -g -O3"
 
+# Display GCC messages in colour
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+
 # Default programs
 export EDITOR="vim"
 export VISUAL="vim"
