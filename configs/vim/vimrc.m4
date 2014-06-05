@@ -1,7 +1,36 @@
+Install vim plugins from git
+define(VIM_PLUGIN, `GIT_REPO(~/.vim/bundle/$1, $2)')
+
+* Vim Package management
+  VIM_PLUGIN(pathogen, https://github.com/tpope/vim-pathogen.git)
+
+* Adds the "surround" range, e.g. cs"' changes surrounding " to '.
+  VIM_PLUGIN(surround, https://github.com/tpope/vim-surround.git)
+
+* Adds commands for aligning on certain characters, e.g. :Tab /= to align on =.
+  VIM_PLUGIN(tabular, https://github.com/godlygeek/tabular.git)
+
+* Development version of markdown syntax highlighting for all *.md
+  VIM_PLUGIN(markdown, https://github.com/tpope/vim-markdown.git)
+
+* Make . work correctly for a number of plugins (e.g. surround)
+  VIM_PLUGIN(repeat, https://github.com/tpope/vim-repeat.git)
+
+* Defines new ii, ai, iI, aI objects for regions of similarly indented code
+  VIM_PLUGIN(indent-object, https://github.com/michaeljsmith/vim-indent-object.git)
+
+* Defines :rename to change a file's name, delete the old one
+  VIM_PLUGIN(rename, https://github.com/danro/rename.vim.git)
+
+
 CONFIG_FILE(vimrc, ~/.vimrc)
 " Use Vim settings, rather then Vi settings (much better!).
 " This must be first, because it changes other options as a side effect.
 set nocompatible
+
+" Add pathogen to the path and make it autoload all bundles
+runtime bundle/pathogen/autoload/pathogen.vim
+call pathogen#infect()
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
