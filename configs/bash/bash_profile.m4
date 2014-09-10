@@ -7,6 +7,7 @@ END_COMPUTER()
 # We want everything in bin
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/bin/scripts" ] && export PATH="$HOME/bin/scripts:$PATH"
+[ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
 
 # We want conman to be in the path
 [ -d "$HOME/.dotfiles" ] && export PATH="$HOME/.dotfiles:$PATH"

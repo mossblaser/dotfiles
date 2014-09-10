@@ -1,9 +1,11 @@
 CONFIG_FILE(fancyprompt, ~/bin/fancyprompt)
 #!/bin/bash
 
+# Colour codes
 RESET="\[\033[000m\]"
 RED="\[\033[000;031m\]"
 
+# Work out the colour code for this machine/account combo
 function colour_code_user_machine {
 	case "$USER" in
 		"jonathan") USER_COLOUR=6;;
@@ -28,6 +30,7 @@ function colour_code_user_machine {
 }
 
 
+# Show the term
 function make_status_block {
 	if [ -n "$DISPLAY" ]; then
 		FRESH="►"
@@ -48,9 +51,9 @@ function make_status_block {
 	fi
 }
 
-
+# Contract "obvious" paths
 function contract_path {
-	TRUNCATE="…"
+	TRUNCATE="..."
 	wd="$(pwd \
 	      | sed -re "s:$HOME(.*):~\1:" \
 	      | sed -re "s:~/Programing/[^/]+/(.*):$TRUNCATE\1:" \
@@ -59,6 +62,8 @@ function contract_path {
 }
 
 
+# Change the prompt (at the last moment!) to show last command success etc. and
+# also set window title
 function psown_my_ps {
 	export last_exit="$?"
 	
@@ -70,7 +75,39 @@ function psown_my_ps {
 	#export PS1="$working_dir% "
 	
 	export FRESH_TERM=""
+	
+	# Set window title to reflect path when not running a command
+	if [ -z "$MANUAL_TITLE" ]; then
+		set_title "$(contract_path "PWD")"
+	fi
 }
 
+
+# Automatically set the title based on the requested command
+function auto_title {
+	# If no title has been specified manually and its not the prompt update
+	# function. Also, don't title fresh terminals.
+	if [ -z "$MANUAL_TITLE" -a "$BASH_COMMAND" != "psown_my_ps" -a -z "$FRESH_TERM" ]; then
+		set_title "$BASH_COMMAND"
+	fi
+}
+
+
+# Set the XTERM window title
+function set_title {
+	echo -ne "\e]2;$1\a"
+}
+
+
+# User-facing override window title function
+function title {
+	export MANUAL_TITLE="$*"
+	set_title "$*"
+}
+
+export MANUAL_TITLE=""
 export FRESH_TERM="yes"
 export PROMPT_COMMAND="psown_my_ps"
+
+# Causes auto_title to be run before every command
+trap auto_title DEBUG
