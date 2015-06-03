@@ -22,6 +22,8 @@ define(VIM_PLUGIN, `GIT_REPO(~/.vim/bundle/$1, $2)')
 * Defines :rename to change a file's name, delete the old one
   VIM_PLUGIN(rename, https://github.com/danro/rename.vim.git)
 
+* Automatically sets tab size/style to match files in the current directory.
+  VIM_PLUGIN(sleuth, https://github.com/tpope/vim-sleuth.git)
 
 CONFIG_FILE(vimrc, ~/.vimrc)
 " Use Vim settings, rather then Vi settings (much better!).
@@ -58,13 +60,9 @@ set list
 " set a prettey visible whitespace style
 set listchars=tab:⌞\ ,trail:⋅
 
-" set the width of a tab stop
-set softtabstop=2
-set tabstop=2
-" set the width of an auto indent
+" Set default tabstop size
 set shiftwidth=2
-" turn tabs into spaces
-"set expandtab
+set tabstop=2
 
 " Fix the horrible deletion of auto indents
 inoremap <CR> <CR><Space><BS>
