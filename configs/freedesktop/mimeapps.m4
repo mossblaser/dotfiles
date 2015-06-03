@@ -16,3 +16,4 @@ x-scheme-handler/http=new-window-google-chrome.desktop
 x-scheme-handler/https=new-window-google-chrome.desktop
 application/x-ms-dos-executable=wine.desktop
 image/bmp=eog.desktop
+image/gif=eog.desktop
