@@ -18,6 +18,9 @@ END_COMPUTER()
 # We want the maple toolchain to be inthe path
 [ -d "$HOME/Programing/libmaple" ] && export LIB_MAPLE_HOME="$HOME/Programing/libmaple"
 
+# We want the ESP8266 toolchain to be inthe path
+[ -d "$HOME/Programing/ESP8266/crosstool-NG/builds/xtensa-lx106-elf/bin" ] && export PATH="$PATH:$HOME/Programing/ESP8266/crosstool-NG/builds/xtensa-lx106-elf/bin" 
+
 # ARM embedded cross compiler
 [ -d "$HOME/bin/arm-2013.05/bin" ] && export PATH="$PATH:$HOME/bin/arm-2013.05/bin"
 
