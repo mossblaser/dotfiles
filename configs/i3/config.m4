@@ -81,7 +81,7 @@ exec --no-startup-id shelfkvm
 END_COMPUTER()
 
 # Auto-start for specific desks
-AUTO_START_WS_NUM( 8, CHROME --new-window 'http://grooveshark.com/')
+AUTO_START_WS_NUM( 8, CHROME --new-window 'http://deezer.com/')
 AUTO_START_WS_NUM( 9, CHROME --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
 AUTO_START_WS_NUM(10, pidgin)
 
@@ -112,6 +112,7 @@ PROGRAM(q,xterm -e qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
 PROGRAM(Shift+y,xterm -e python2 -i ~/.pythonrc)
 PROGRAM(l,xterm -e IF_COMPUTER(USES_DEBIAN,rlwrap -a -c ,)gnuplot)
+PROGRAM(o,xterm -e octave)
 
 # Utilities
 PROGRAM(e, gvim)
