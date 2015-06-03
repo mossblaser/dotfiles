@@ -7,6 +7,10 @@ Host rs0 rs0.cs.man.ac.uk
 	User heathcj9
 	StrictHostKeyChecking no
 
+Host glass
+	Hostname glass.cs.man.ac.uk
+	User heathcj9
+
 Host uni
 	HostName kilburn.cs.man.ac.uk
 	User mbax9jh2
@@ -44,4 +48,8 @@ Host stella64
 
 Host dammam
 	HostName dammam.cs.man.ac.uk
+	User heathcj9
+	
+Host cspc276
+	HostName cspc276.cs.man.ac.uk
 	User heathcj9
