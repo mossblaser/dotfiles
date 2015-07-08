@@ -48,10 +48,19 @@ set ignorecase
 " keep two lines of scroll off
 set scrolloff=2
 
-"Auto-wrap long lines
-set tw=80
+" Auto-wrap long lines
+set tw=79
+
 " wrap round movement keys over lines
 set whichwrap=b,s,<,>,[,],h,l
+
+" Visually break long lines at word boundaries
+set wrap
+set linebreak
+" Indent wrapped lines
+set breakindent
+" Prefix the start of wrapped lines with a newline-symbol and a space
+set showbreak=\ \ \ \ ↳
 
 " enable whitespace visibility
 set list
@@ -65,6 +74,8 @@ set tabstop=2
 set shiftwidth=2
 " turn tabs into spaces
 "set expandtab
+" Round indentation inserted with > and < to multiples of shift width
+set shiftround
 
 " Fix the horrible deletion of auto indents
 inoremap <CR> <CR><Space><BS>
