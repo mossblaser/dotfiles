@@ -287,10 +287,10 @@ bindcode $mod+shift+47 move container to output up;     focus output up
 bindcode $mod+shift+61 move container to output down;   focus output down
 
 # Output workspace movement
-bindcode $mod+ctrl+shift+59 move workspace to output left;   focus output left
-bindcode $mod+ctrl+shift+60 move workspace to output right;  focus output right
-bindcode $mod+ctrl+shift+47 move workspace to output up;     focus output up
-bindcode $mod+ctrl+shift+61 move workspace to output down;   focus output down
+bindcode $mod+ctrl+shift+59 move workspace to output left
+bindcode $mod+ctrl+shift+60 move workspace to output right
+bindcode $mod+ctrl+shift+47 move workspace to output up
+bindcode $mod+ctrl+shift+61 move workspace to output down
 
 
 ################################################################################
