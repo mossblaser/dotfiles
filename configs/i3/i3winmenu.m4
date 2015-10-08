@@ -9,33 +9,21 @@ CONFIG_FILE(dmenu-powered window list, ~/.i3/i3winmenu.py)
 #
 # edited by Jure Ziberna for i3-py's examples section
 
-import i3
+import i3ipc
 import subprocess
 import collections
 
-def i3clients():
+def i3clients(conn):
     """
     Returns a dictionary of key-value pairs of a window text and window id.
     Each window text is of format "[workspace] window title (instance number)"
     """
     clients = collections.OrderedDict()
-    for ws_num in range(1,11):
-        workspace = i3.filter(num=ws_num)
-        if not workspace:
-            continue
-        workspace = workspace[0]
-        windows = i3.filter(workspace, nodes=[])
-        instances = {}
-        # Adds windows and their ids to the clients dictionary
-        for window in windows:
-            win_str = '[%s] %s' % (workspace['name'], window['name'])
-            # Appends an instance number if other instances are present
-            if win_str in instances:
-                instances[win_str] += 1
-                win_str = '%s (%d)' % (win_str, instances[win_str])
-            else:
-                instances[win_str] = 1
-            clients[win_str] = window['id']
+    windows = conn.get_tree().leaves()
+    for window in sorted(windows, key=(lambda w: w.workspace().name)):
+        clients["[%s] %s (%d)"%(window.workspace().name,
+                                window.name,
+                                window.id)] = window.id
     return clients
 
 def win_menu(clients, l=10):
@@ -51,7 +39,8 @@ def win_menu(clients, l=10):
     return clients.get(win_str, None)
 
 if __name__ == '__main__':
-    clients = i3clients()
+    conn = i3ipc.Connection()
+    clients = i3clients(conn)
     win_id = win_menu(clients)
     if win_id:
-        i3.focus(con_id=win_id)
+        conn.command("[con_id=%d] focus"%(win_id))

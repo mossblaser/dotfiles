@@ -18,38 +18,28 @@ import signal
 import sys
 import time
 
-import i3
+import i3ipc
 
-def when_workspace_created(callback, name = None, number = None):
+def main(command, name = None, number = None):
 	"""
-	Function which runs forever and calls callback everytime a desk with the given
-	name or number is focused while empty (i.e. opened for the first time).
+	Function which runs forever and runs a command everytime a desk with the
+	given name or number is focused while empty (i.e. opened for the first time).
 	"""
+	
+	conn = i3ipc.Connection()
 	
 	# Create a callback to do the deed
-	def my_function(event, data, subscription):
-		# Only on switch to workspace
-		if event["change"] == "focus":
-			# Only for the matching workspace
-			if (name is not None and event["current"]["name"] == name) or \
-			   (number is not None and event["current"]["num"] == number):
-				# Only if the workspace is fresh/empty
-				if event["current"]["nodes"] == []:
-					# Run callback
-					callback()
+	def on_ws_change(conn, event):
+		# Only for the matching workspace
+		if name == event.current.name or number == event.current.num:
+			# Only if the workspace is fresh/empty
+			if event.current.nodes == []:
+				# Run command
+				conn.command(command)
 	
 	# Start watching for workspace changes
-	subscription = i3.Subscription(my_function, 'workspace')
-	
-	# Close the subscription when killed
-	def on_int(signal, frame):
-		subscription.close()
-		sys.exit(0)
-	signal.signal(signal.SIGINT, on_int)
-	
-	# Nothing else to do in the main thread (subscription is processed in another
-	# thread)
-	signal.pause()
+	conn.on("workspace::focus", on_ws_change)
+	conn.main()
 
 
 
@@ -69,8 +59,4 @@ if __name__=="__main__":
 	number = args.number
 	i3_command = " ".join(args.command)
 	
-	def callback():
-		time.sleep(0.5)
-		i3.command(i3_command)
-	
-	when_workspace_created(callback, name, number)
+	main(i3_command, name, number)
