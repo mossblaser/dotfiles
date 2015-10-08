@@ -81,9 +81,9 @@ exec --no-startup-id shelfkvm
 END_COMPUTER()
 
 # Auto-start for specific desks
-AUTO_START_WS_NUM( 8, CHROME --new-window 'http://deezer.com/')
-AUTO_START_WS_NUM( 9, CHROME --new-window 'http://gmail.com/' 'http://calendar.google.com' 'http://mightytext.net/app')
-AUTO_START_WS_NUM(10, pidgin)
+AUTO_START_WS_NUM( 8, ~/.i3/layouts/music.sh)
+AUTO_START_WS_NUM( 9, ~/.i3/layouts/mail.sh)
+AUTO_START_WS_NUM(10, ~/.i3/layouts/im.sh)
 
 ################################################################################
 # Hardware Hotkeys
@@ -107,7 +107,6 @@ PROGRAM(space, dmenu_run)
 
 # Terminals
 PROGRAM(Return,xterm)
-PROGRAM(t,xterm)
 PROGRAM(q,xterm -e qalc)
 PROGRAM(y,xterm -e python -i ~/.pythonrc)
 PROGRAM(Shift+y,xterm -e python2 -i ~/.pythonrc)
@@ -120,7 +119,7 @@ PROGRAM(w, CHROME)
 PROGRAM(f, IF_COMPUTER(USES_ARCH,nemo --no-desktop,nautilus --no-desktop))
 
 # Graphics
-PROGRAM(g, gimp)
+PROGRAM(g, ~/.i3/layouts/gimp.sh)
 PROGRAM(i, inkscape)
 
 # IM
@@ -132,6 +131,8 @@ PROGRAM(r, rhythmbox)
 # Maths
 PROGRAM(m,wxmaxima)
 
+# Latex
+PROGRAM(t, ~/.i3/layouts/latex.sh)
 
 ################################################################################
 # Font
