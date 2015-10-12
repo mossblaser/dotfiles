@@ -9,7 +9,8 @@ CONFIG_FILE(dmenu-powered window list, ~/.i3/i3nextfreeworkspace)
 
 NEXT_FREE_WORKSPACE="$(
 	diff -c0 <(i3-msg -t GET_WORKSPACES \
-	           | jq '.[] | .num') \
+	           | jq '.[] | .num' \
+	           | sort -n) \
 	         <(seq 10) \
 	| sed -nre 's/^[+] (.*)$/\1/p' \
 	| head -n1
