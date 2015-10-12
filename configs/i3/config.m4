@@ -316,6 +316,9 @@ forloop(`i', 1, 10, `
 bindsym $mod+minus workspace back_and_forth ; exec --no-startup-id ~/.i3/i3nameworkspace
 bindsym $mod+shift+minus move container to workspace back_and_forth;  workspace back_and_forth; exec --no-startup-id ~/.i3/i3nameworkspace
 
+# As above but to the next unused workspace number
+bindsym $mod+equal exec --no-startup-id ~/.i3/i3nextfreeworkspace; exec --no-startup-id ~/.i3/i3nameworkspace
+bindsym $mod+shift+equal exec --no-startup-id ~/.i3/i3nextfreeworkspace move; exec --no-startup-id ~/.i3/i3nameworkspace
 
 ################################################################################
 # Workspace renaming
