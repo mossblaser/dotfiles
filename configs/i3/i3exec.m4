@@ -50,6 +50,12 @@ exec "$@"
 CONFIG_FILE(Rename the current workspace based on the here directory, ~/.i3/i3nameworkspace)
 #!/bin/bash
 # Move into the current directory
+
+# This sleep gives i3 time to actually complete the workspace switch (it
+# sometimes happens too late resulting in this command renaming the old
+# workspace or worse.
+sleep 0.05
+
 source ~/.i3/i3here
 there
 
