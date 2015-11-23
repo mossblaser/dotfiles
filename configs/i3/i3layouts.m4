@@ -22,7 +22,7 @@ CONFIG_FILE(Layout for my email workspace., ~/.i3/layouts/mail.json)
             "name": "Gmail",
             "swallows": [
                {
-                  "class": "^Google-chrome$",
+                  "class": "^google-chrome$",
                   "instance": "^gmail[.]com$"
                }
             ]
@@ -32,7 +32,7 @@ CONFIG_FILE(Layout for my email workspace., ~/.i3/layouts/mail.json)
             "name": "Calendar",
             "swallows": [
                {
-                  "class": "^Google-chrome$",
+                  "class": "^google-chrome$",
                   "instance": "^calendar[.]google[.]com$"
                }
             ]
@@ -42,7 +42,7 @@ CONFIG_FILE(Layout for my email workspace., ~/.i3/layouts/mail.json)
             "name": "MightyText",
             "swallows": [
                {
-                  "class": "^Google-chrome$",
+                  "class": "^google-chrome$",
                   "instance": "^mightytext[.]net__app$"
                }
             ]
@@ -83,7 +83,7 @@ CONFIG_FILE(Layout for my IM workspace., ~/.i3/layouts/im.json)
                     "name": "Hangouts",
                     "swallows": [
                          {
-                            "class": "^Google-chrome$",
+                            "class": "^google-chrome$",
                             "instance": "^crx_"
                          }
                     ]
@@ -165,7 +165,7 @@ CONFIG_FILE(Layout for my Music workspace., ~/.i3/layouts/music.json)
                     "name": "Deezer",
                     "swallows": [
                          {
-                            "class": "^Google-chrome$",
+                            "class": "^google-chrome$",
                             "instance": "^deezer[.]com$"
                          }
                     ]
