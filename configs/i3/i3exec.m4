@@ -26,6 +26,12 @@ function here() {
 		echo "[ -f \"$ACTIVATE_FILE\" ] && source \"$ACTIVATE_FILE\"" >> "$PWD_FILE"
 	fi
 	
+	# If any node_modules directories are in the path, re-add them later
+	NODE_PATH="$(echo "$PATH" | tr ":" "\n" | grep "/node_modules/.bin" | tr "\n" ":")"
+	if [ -n "$NODE_PATH" ]; then
+		echo "export PATH=\"\$PATH:$NODE_PATH\"" >> "$PWD_FILE"
+	fi
+	
 	# Set the workspace name
 	~/.i3/i3nameworkspace
 }

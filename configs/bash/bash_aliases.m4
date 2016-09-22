@@ -38,3 +38,21 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# Add local node binary path
+function np {
+	BASE_DIR="$PWD"
+	while [ ! -d "$BASE_DIR/node_modules/.bin" ]; do
+		BASE_DIR="$(realpath "$BASE_DIR/..")"
+		[ "$BASE_DIR" = "/" ] && break
+	done
+	
+	NODE_BIN_DIR="$BASE_DIR/node_modules/.bin" 
+	
+	if [ -d "$NODE_BIN_DIR" ]; then
+		export PATH="$PATH:$NODE_BIN_DIR"
+	else
+		echo "np: ERROR: No node_modules directory found!"
+		exit 1
+	fi
+}
