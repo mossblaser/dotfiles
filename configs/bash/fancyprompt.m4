@@ -9,7 +9,9 @@ RED="\[\033[000;031m\]"
 function colour_code_user_machine {
 	case "$USER" in
 		"jonathan") USER_COLOUR=6;;
+		"jonathah") USER_COLOUR=2;;
 		"heathcj9") USER_COLOUR=2;;
+		"heathj08") USER_COLOUR=3;;
 		"mbax9jh2") USER_COLOUR=3;;
 		"root")     USER_COLOUR=1;;
 		*)          USER_COLOUR=0;;
@@ -19,6 +21,7 @@ function colour_code_user_machine {
 		jonathan*)        MACHINE_COLOUR=6;;
 		kilburn|E-C07KI*) MACHINE_COLOUR=3;;
 		rs0*)             MACHINE_COLOUR=2;;
+		rd*)              MACHINE_COLOUR=2;;
 		*)                MACHINE_COLOUR=0;;
 	esac
 	

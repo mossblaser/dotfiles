@@ -30,7 +30,7 @@ if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
 
-ON_COMPUTER(USES_DEBIAN)
+ON_COMPUTER(USES_DEBIAN|USES_UBUNTU)
 # Use Magic Debian bash completion
 if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion

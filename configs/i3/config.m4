@@ -28,8 +28,8 @@ Convenient aliases
 define(`AUTO_START_WS_NAME',`AUTO_START_WS(-n $1,$2)')
 define(`AUTO_START_WS_NUM',`AUTO_START_WS(-N $1,$2)')
 --------------------------------------------------------------------------------
-Google chrome command for different machines.
-define(`CHROME',IF_COMPUTER(USES_ARCH,google-chrome-stable,google-chrome))
+Browser command for different machines.
+define(`BROWSER',IF_COMPUTER(BBCRD,firefox,IF_COMPUTER(USES_ARCH,google-chrome-stable,google-chrome)))
 --------------------------------------------------------------------------------
 
 
@@ -75,15 +75,30 @@ exec --no-startup-id pa-applet
 # Start notifications daemon
 exec --no-startup-id dunst
 
+ON_COMPUTER(BBCRD)
+# Make capslock into another escape key
+exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
+END_COMPUTER()
+
+ON_COMPUTER(USES_UBUNTU)
+# Make GTK applications look right and get sensible mouse behaviour
+exec --no-startup-id gnome-settings-daemon
+END_COMPUTER()
+
 ON_COMPUTER(HOME_COMPUTER)
 # Shelf KVM shortcut
 exec --no-startup-id shelfkvm
 END_COMPUTER()
 
 # Auto-start for specific desks
+ON_COMPUTER(PERSONAL)
 AUTO_START_WS_NUM( 8, ~/.i3/layouts/music.sh)
 AUTO_START_WS_NUM( 9, ~/.i3/layouts/mail.sh)
 AUTO_START_WS_NUM(10, ~/.i3/layouts/im.sh)
+END_COMPUTER()
+ON_COMPUTER(BBCRD)
+AUTO_START_WS_NUM( 9, thunderbird)
+END_COMPUTER()
 
 ################################################################################
 # Hardware Hotkeys
@@ -115,8 +130,8 @@ PROGRAM(o,xterm -e octave)
 
 # Utilities
 PROGRAM(e, gvim)
-PROGRAM(w, CHROME)
-PROGRAM(f, IF_COMPUTER(USES_ARCH,nemo --no-desktop,nautilus --no-desktop))
+PROGRAM(w, BROWSER)
+PROGRAM(f, IF_COMPUTER(USES_ARCH,nemo --no-desktop,nemo --no-desktop))
 
 # Graphics
 PROGRAM(g, ~/.i3/layouts/gimp.sh)
@@ -386,8 +401,8 @@ bindsym $mod+m     exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 # Toggle to-and-from the ann-marie-mode using the ThinkVantage button
 bindsym IF_COMPUTER(THINKPAD,XF86Launch1,$mod+$launcher_mod+space) workspace "Cube Mode"
 
-# Auto-launch a chrome session there when it is opened empty
-AUTO_START_WS_NAME("Cube Mode", CHROME --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
+# Auto-launch a browser session there when it is opened empty
+AUTO_START_WS_NAME("Cube Mode", BROWSER --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
 
 
 ################################################################################
