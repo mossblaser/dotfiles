@@ -420,8 +420,8 @@ bar {
 	position bottom
 	
 	# Always show the system tray on the primary display
-	ON_COMPUTER(USES_ARCH)
-	# Arch's i3 package contains a bug which makes tray_output primary not also
+	ON_COMPUTER(USES_ARCH|USES_UBUNTU)
+	# Ubuntu/Arch's i3 package contains a bug which makes tray_output primary not also
 	# match single screens which aren't marked as primary.
 	ELSE_COMPUTER()
 	tray_output primary
