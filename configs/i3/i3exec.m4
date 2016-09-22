@@ -20,6 +20,12 @@ function here() {
 	echo "cd \"$(pwd)\"" > "$PWD_FILE"
 	echo "I3_WS_NAME=\"$I3_WS_NAME\"" >> "$PWD_FILE"
 	
+	# If in a virtual-env, reactivate that automatically
+	if [ -n "$VIRTUAL_ENV" ]; then
+		ACTIVATE_FILE="$VIRTUAL_ENV/bin/activate" 
+		echo "[ -f \"$ACTIVATE_FILE\" ] && source \"$ACTIVATE_FILE\"" >> "$PWD_FILE"
+	fi
+	
 	# Set the workspace name
 	~/.i3/i3nameworkspace
 }
