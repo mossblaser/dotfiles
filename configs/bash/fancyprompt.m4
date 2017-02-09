@@ -8,18 +8,18 @@ RED="\[\033[000;031m\]"
 # Work out the colour code for this machine/account combo
 function colour_code_user_machine {
 	case "$USER" in
-		"jonathan") USER_COLOUR=6;;
-		"heathcj9") USER_COLOUR=2;;
-		"mbax9jh2") USER_COLOUR=3;;
-		"root")     USER_COLOUR=1;;
-		*)          USER_COLOUR=0;;
+		"jonathan")            USER_COLOUR=6;;
+		"heathcj9"|"mbax9jh2") USER_COLOUR=2;;
+		"jonathah")            USER_COLOUR=3;;
+		"root")                USER_COLOUR=1;;
+		*)                     USER_COLOUR=0;;
 	esac
 	
 	case "$HOSTNAME" in
-		jonathan*)        MACHINE_COLOUR=6;;
-		kilburn|E-C07KI*) MACHINE_COLOUR=3;;
-		rs0*)             MACHINE_COLOUR=2;;
-		*)                MACHINE_COLOUR=0;;
+		jonathan*)             MACHINE_COLOUR=6;;
+		rs0*|kilburn|E-C07KI*) MACHINE_COLOUR=2;;
+		rd*)                   MACHINE_COLOUR=3;;
+		*)                     MACHINE_COLOUR=0;;
 	esac
 	
 	echo -ne "\[\033[04"
@@ -28,7 +28,6 @@ function colour_code_user_machine {
 	echo -ne "$MACHINE_COLOUR"
 	echo -ne "m\]"
 }
-
 
 # Show the term
 function make_status_block {
@@ -95,7 +94,12 @@ function auto_title {
 
 # Set the XTERM window title
 function set_title {
+ON_COMPUTER(USES_OSX)
+	# OSX Does its own magic for this...
+	true
+ELSE_COMPUTER()
 	echo -ne "\e]2;$1\a"
+END_COMPUTER()
 }
 
 

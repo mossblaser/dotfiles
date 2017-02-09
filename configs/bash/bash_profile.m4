@@ -4,6 +4,14 @@ ON_COMPUTER(THINKPAD)
 CLASSPATH="/home/jonathan/Programing/Java/:$CLASSPATH"
 END_COMPUTER()
 
+ON_COMPUTER(USES_OSX)
+# MacPorts install path
+[ -d "/opt/local/bin" ] && export PATH="/opt/local/bin:$PATH"
+
+# Use MacPorts non-prefixed GNU coreutils
+[ -d "/opt/local/libexec/gnubin" ] && export PATH="/opt/local/libexec/gnubin:$PATH"
+END_COMPUTER()
+
 # We want everything in bin
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/bin/scripts" ] && export PATH="$HOME/bin/scripts:$PATH"
