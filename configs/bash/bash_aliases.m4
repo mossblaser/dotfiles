@@ -53,6 +53,6 @@ function np {
 		export PATH="$PATH:$NODE_BIN_DIR"
 	else
 		echo "np: ERROR: No node_modules directory found!"
-		exit 1
+		return 1
 	fi
 }
