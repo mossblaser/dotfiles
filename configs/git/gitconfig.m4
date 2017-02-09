@@ -5,6 +5,8 @@ ON_COMPUTER(BBC_COMPUTER)
 	email = jonathan.heathcote@bbc.co.uk
 ELSE_COMPUTER()
 	email = mail@jhnet.co.uk
-END_COMPUTE()
+END_COMPUTER()
 [push]
 	default = matching
+[credential]
+	helper = store
