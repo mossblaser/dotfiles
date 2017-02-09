@@ -23,6 +23,9 @@ END_COMPUTER()
 # We want jhnet to be in the path
 [ -d "$HOME/Programing/Web/Jhnet13/util" ] && export PATH="$HOME/Programing/Web/Jhnet13/util:$PATH"
 
+# We want Android Studio in the path
+[ -d "/opt/android-studio" ] && export PATH="/opt/android-studio/bin:$PATH"
+
 # We want the maple toolchain to be inthe path
 [ -d "$HOME/Programing/libmaple" ] && export LIB_MAPLE_HOME="$HOME/Programing/libmaple"
 
