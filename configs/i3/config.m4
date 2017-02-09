@@ -63,6 +63,11 @@ set $float_move_rate 25
 # Auto-start
 ################################################################################
 
+IF_COMPUTER(BBC_COMPUTER)
+# Lock the session after some idle time
+exec --no-startup-id xautolock -time 15 -locker i3lock
+END_COMPUTER()
+
 # Start the compositing manager
 exec --no-startup-id xcompmgr
 
@@ -402,7 +407,9 @@ bindsym $mod+m     exec i3-input -l 1 -F '[con_mark="%s"] focus' -P 'Focus Mark:
 bindsym IF_COMPUTER(THINKPAD,XF86Launch1,$mod+$launcher_mod+space) workspace "Cube Mode"
 
 # Auto-launch a browser session there when it is opened empty
+ON_COMPUTER(PERSONAL)
 AUTO_START_WS_NAME("Cube Mode", BROWSER --new-window 'http://www.google.com' 'http://www.facebook.com' 'http://www.hotmail.com')
+END_COMPUTER()
 
 
 ################################################################################
