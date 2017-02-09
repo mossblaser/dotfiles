@@ -63,7 +63,7 @@ set $float_move_rate 25
 # Auto-start
 ################################################################################
 
-IF_COMPUTER(BBC_COMPUTER)
+ON_COMPUTER(BBC_COMPUTER)
 # Lock the session after some idle time
 exec --no-startup-id xautolock -time 15 -locker i3lock
 END_COMPUTER()
@@ -80,19 +80,9 @@ exec --no-startup-id pa-applet
 # Start notifications daemon
 exec --no-startup-id dunst
 
-ON_COMPUTER(BBCRD)
-# Make capslock into another escape key
-exec --no-startup-id xmodmap -e 'clear Lock' -e 'keycode 0x42 = Escape'
-END_COMPUTER()
-
 ON_COMPUTER(USES_UBUNTU)
 # Make GTK applications look right and get sensible mouse behaviour
 exec --no-startup-id gnome-settings-daemon
-END_COMPUTER()
-
-ON_COMPUTER(HOME_COMPUTER)
-# Shelf KVM shortcut
-exec --no-startup-id shelfkvm
 END_COMPUTER()
 
 # Auto-start for specific desks
