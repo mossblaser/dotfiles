@@ -10,7 +10,6 @@ CONFIG_FILE(Start up my mail client workspace, ~/.i3/layouts/mail.sh)
 i3-msg append_layout ~/.i3/layouts/mail.json
 CHROME --app='http://gmail.com' &
 CHROME --app='http://calendar.google.com' &
-CHROME --app='http://mightytext.net/app' &
 
 CONFIG_FILE(Layout for my email workspace., ~/.i3/layouts/mail.json)
 {
@@ -22,7 +21,7 @@ CONFIG_FILE(Layout for my email workspace., ~/.i3/layouts/mail.json)
             "name": "Gmail",
             "swallows": [
                {
-                  "class": "^google-chrome$",
+                  "class": "^[gG]oogle-chrome$",
                   "instance": "^gmail[.]com$"
                }
             ]
@@ -32,18 +31,8 @@ CONFIG_FILE(Layout for my email workspace., ~/.i3/layouts/mail.json)
             "name": "Calendar",
             "swallows": [
                {
-                  "class": "^google-chrome$",
+                  "class": "^[gG]oogle-chrome$",
                   "instance": "^calendar[.]google[.]com$"
-               }
-            ]
-        },
-        {
-            "type": "con",
-            "name": "MightyText",
-            "swallows": [
-               {
-                  "class": "^google-chrome$",
-                  "instance": "^mightytext[.]net__app$"
                }
             ]
         }
@@ -55,7 +44,6 @@ CONFIG_FILE(Start up my IM workspace, ~/.i3/layouts/im.sh)
 #!/bin/bash
 i3-msg append_layout ~/.i3/layouts/im.json
 pidgin &
-skype &
 
 CONFIG_FILE(Layout for my IM workspace., ~/.i3/layouts/im.json)
 {
@@ -75,26 +63,6 @@ CONFIG_FILE(Layout for my IM workspace., ~/.i3/layouts/im.json)
                          {
                             "class": "^Pidgin$",
                             "title": "^Buddy List$"
-                         }
-                    ]
-                },
-                {
-                    "type": "con",
-                    "name": "Hangouts",
-                    "swallows": [
-                         {
-                            "class": "^google-chrome$",
-                            "instance": "^crx_"
-                         }
-                    ]
-                },
-                {
-                    "type": "con",
-                    "name": "Skype",
-                    "swallows": [
-                         {
-                            "class": "^Skype$",
-                            "instance": "^skype$"
                          }
                     ]
                 }
@@ -165,7 +133,7 @@ CONFIG_FILE(Layout for my Music workspace., ~/.i3/layouts/music.json)
                     "name": "Deezer",
                     "swallows": [
                          {
-                            "class": "^google-chrome$",
+                            "class": "^[gG]oogle-chrome$",
                             "instance": "^deezer[.]com$"
                          }
                     ]
