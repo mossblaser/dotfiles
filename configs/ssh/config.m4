@@ -50,6 +50,9 @@ Host dammam
 	HostName dammam.cs.man.ac.uk
 	User heathcj9
 	
-Host cspc276
-	HostName cspc276.cs.man.ac.uk
+Host cspc*
 	User heathcj9
+
+Host spinnaker spinnaker.cs.man.ac.uk
+	HostName spinnaker.cs.man.ac.uk
+	User mbax9jh2
