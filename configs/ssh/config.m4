@@ -1,4 +1,10 @@
 CONFIG_FILE(ssh config, ~/.ssh/config)
+Host 10.10.*
+	ProxyCommand ssh cloud.virt.ch.bbc.co.uk nc -w 180 %h %p
+
+Host github.com gitlab-ext.irt.de *.bbc.co.uk
+	ProxyCommand /bin/nc -xsocks-gw.rd.bbc.co.uk:1085 -w 180 %h %p
+
 Host e-c07ki* kilburn kilburn.cs.man.ac.uk
 	User mbax9jh2
 	StrictHostKeyChecking no
