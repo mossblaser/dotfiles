@@ -12,6 +12,12 @@ ON_COMPUTER(USES_OSX)
 [ -d "/opt/local/libexec/gnubin" ] && export PATH="/opt/local/libexec/gnubin:$PATH"
 END_COMPUTER()
 
+ON_COMPUTER(USES_UBUNTU|USES_DEBIAN)
+# Debian packaging tool environment variables
+export DEBEMAIL="jonathan.heathcote@bbc.co.uk"
+export DEBFULLNAME="Jonathan Heathcote"
+END_COMPUTER()
+
 # We want everything in bin
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/bin/scripts" ] && export PATH="$HOME/bin/scripts:$PATH"

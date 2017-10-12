@@ -24,6 +24,13 @@ ON_COMPUTER(USES_DEBIAN)
 	alias ack="ack-grep"
 END_COMPUTER()
 
+ON_COMPUTER(USES_DEBIAN|USES_UBUNTU)
+# Setup quiltrc for building debian packages (recommended by the debian
+# maint-guide)
+alias dquilt="quilt --quiltrc=${HOME}/.quiltrc-dpkg"
+complete -F _quilt_completion -o filenames dquilt
+END_COMPUTER()
+
 # Don't bother me about downloads which have expired
 alias get-iplayer="get-iplayer --nopurge"
 
