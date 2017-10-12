@@ -29,7 +29,7 @@ define(`AUTO_START_WS_NAME',`AUTO_START_WS(-n $1,$2)')
 define(`AUTO_START_WS_NUM',`AUTO_START_WS(-N $1,$2)')
 --------------------------------------------------------------------------------
 Browser command for different machines.
-define(`BROWSER',IF_COMPUTER(BBCRD,firefox,IF_COMPUTER(USES_ARCH,google-chrome-stable,google-chrome)))
+define(`BROWSER',IF_COMPUTER(BBCRD,firefox-trunk,IF_COMPUTER(USES_ARCH,google-chrome-stable,google-chrome)))
 --------------------------------------------------------------------------------
 
 
