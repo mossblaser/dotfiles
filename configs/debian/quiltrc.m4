@@ -2,7 +2,7 @@ dnl Suggested default by the Debian maint-guide.
 dnl https://www.debian.org/doc/manuals/maint-guide/modify.en.html
 
 CONFIG_FILE(quiltrc, ~/.quiltrc-dpkg, USES_DEBIAN|USES_UBUNTU)
-d=. ; while [ ! -d $d/debian -a `readlink -e $d` != / ]; do d=$d/..; done
+d=. ; while [ ! -d $d/debian -a "$(readlink -e $d)" != / ]; do d=$d/..; done
 if [ -d $d/debian ] && [ -z $QUILT_PATCHES ]; then
     # if in Debian packaging tree with unset $QUILT_PATCHES
     QUILT_PATCHES="debian/patches"
