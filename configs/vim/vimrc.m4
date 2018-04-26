@@ -22,6 +22,8 @@ define(VIM_PLUGIN, `GIT_REPO(~/.vim/bundle/$1, $2)')
 * Defines :rename to change a file's name, delete the old one
   VIM_PLUGIN(rename, https://github.com/danro/rename.vim.git)
 
+* Adds :CtrlP fuzzy search
+  VIM_PLUGIN(ctrlp, https://github.com/ctrlpvim/ctrlp.vim)
 
 CONFIG_FILE(vimrc, ~/.vimrc)
 " Use Vim settings, rather then Vi settings (much better!).
