@@ -54,9 +54,6 @@ ON_COMPUTER(HOME_COMPUTER)
 [ -f $HOME/bin/shelf ] && . $HOME/bin/shelf
 END_COMPUTER()
 
-# Speedy/debugable defaults for CFLAGS
-export CFLAGS="$CFLAGS -g -O3"
-
 # Display GCC messages in colour
 export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
