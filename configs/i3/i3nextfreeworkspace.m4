@@ -1,5 +1,6 @@
 CONFIG_FILE(dmenu-powered window list, ~/.i3/i3nextfreeworkspace)
 #!/bin/bash
+MAKE_FILE_EXECUTABLE(~/.i3/i3nextfreeworkspace)
 # Switch to the next available workspace
 # Usage:
 #     ./i3nextfreeworkspace 
