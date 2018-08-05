@@ -52,6 +52,9 @@ ON_COMPUTER(PERSONAL)
 export SHET_HOST="127.0.0.1"
 #export SHET_HTTP_URL="http://18sg.net:8080/"
 . shet_complete 2>/dev/null
+
+# Qth support
+export QTH_HOST=server
 END_COMPUTER()
 
 # Here/There For i3
