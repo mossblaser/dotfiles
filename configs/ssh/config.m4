@@ -18,6 +18,12 @@ Match final host *
 
 END_COMPUTER()
 
+Host home
+	User jonathan
+	Hostname home.jamh.org
+	ForwardX11 yes
+	ForwardX11Trusted yes
+
 Host e-c07ki* kilburn kilburn.cs.man.ac.uk
 	User mbax9jh2
 	StrictHostKeyChecking no
