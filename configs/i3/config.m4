@@ -29,7 +29,7 @@ define(`AUTO_START_WS_NAME',`AUTO_START_WS(-n $1,$2)')
 define(`AUTO_START_WS_NUM',`AUTO_START_WS(-N $1,$2)')
 --------------------------------------------------------------------------------
 Browser command for different machines.
-define(`BROWSER',IF_COMPUTER(BBCRD,firefox-trunk,IF_COMPUTER(USES_ARCH,google-chrome-stable,google-chrome)))
+define(`BROWSER',firefox)
 --------------------------------------------------------------------------------
 
 
@@ -82,7 +82,7 @@ exec --no-startup-id dunst
 
 ON_COMPUTER(USES_UBUNTU)
 # Make GTK applications look right and get sensible mouse behaviour
-exec --no-startup-id gnome-settings-daemon
+exec --no-startup-id /usr/lib/gnome-settings-daemon/gsd-xsettings
 END_COMPUTER()
 
 # Auto-start for specific desks
@@ -92,7 +92,7 @@ AUTO_START_WS_NUM( 9, ~/.i3/layouts/mail.sh)
 AUTO_START_WS_NUM(10, ~/.i3/layouts/im.sh)
 END_COMPUTER()
 ON_COMPUTER(BBCRD)
-AUTO_START_WS_NUM( 9, thunderbird)
+AUTO_START_WS_NUM( 9, evolution)
 END_COMPUTER()
 
 ################################################################################
