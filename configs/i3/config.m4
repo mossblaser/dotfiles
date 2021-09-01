@@ -66,6 +66,9 @@ set $float_move_rate 25
 ON_COMPUTER(BBC_COMPUTER)
 # Lock the session after some idle time
 exec --no-startup-id xautolock -time 15 -locker i3lock
+
+# Make capslock into an escape key 
+exec --no-startup-id setxkbmap -option caps:escape
 END_COMPUTER()
 
 # Start the compositing manager
