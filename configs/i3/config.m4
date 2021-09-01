@@ -91,9 +91,6 @@ AUTO_START_WS_NUM( 8, ~/.i3/layouts/music.sh)
 AUTO_START_WS_NUM( 9, ~/.i3/layouts/mail.sh)
 AUTO_START_WS_NUM(10, ~/.i3/layouts/im.sh)
 END_COMPUTER()
-ON_COMPUTER(BBCRD)
-AUTO_START_WS_NUM( 9, evolution)
-END_COMPUTER()
 
 ################################################################################
 # Hardware Hotkeys

@@ -57,5 +57,12 @@ export SHET_HOST="127.0.0.1"
 export QTH_HOST=server
 END_COMPUTER()
 
+ON_COMPUTER(BBCRD)
+. "$HOME/bin/cans_auth_functions.sh"
+END_COMPUTER()
+
 # Here/There For i3
 . ~/.i3/i3here
+
+# Auto-complete for terraform
+complete -C /usr/bin/terraform terraform

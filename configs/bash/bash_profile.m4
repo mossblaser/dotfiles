@@ -62,7 +62,7 @@ export EDITOR="vim"
 export VISUAL="vim"
 export PAGER="less"
 if [ -n "$DISPLAY" ]; then
-	export BROWSER=google-chrome
+	export BROWSER=firefox
 else
 	export BROWSER=elinks
 fi
