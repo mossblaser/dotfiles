@@ -10,3 +10,5 @@ END_COMPUTER()
 	default = matching
 [credential]
 	helper = store
+[gitreview]
+	username = mossblaser
