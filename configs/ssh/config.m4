@@ -1,11 +1,18 @@
 CONFIG_FILE(ssh config, ~/.ssh/config)
 
 ON_COMPUTER(BBCRD)
-Host 10.10.*
-	ProxyCommand ssh cloud.virt.ch.bbc.co.uk nc -w 180 %h %p
 
-Host github.com gitlab-ext.irt.de gitlab.eps.surrey.ac.uk git.soton.ac.uk *.bbc.co.uk
+# CANS-specific SSH configurations (NB: these files have been copied from the
+# ansible-mist repository and tweaked locally for old OpenSSH version support)
+Include /home/jonathah/Projects/cans/ansible-mist/deployments/rddeploy/extra_files/rddeploy_ssh_config
+Include /home/jonathah/Projects/cans/ansible-mist/deployments/mcr1/extra_files/mcr1_ssh_config
+Include /home/jonathah/Projects/cans/ansible-mist/deployments/lon1/extra_files/lon1_ssh_config
+
+Match final host *
 	ProxyCommand /bin/nc -xsocks-gw.rd.bbc.co.uk:1085 -w 180 %h %p
+	ServerAliveInterval 100
+	ServerAliveCountMax 2
+
 END_COMPUTER()
 
 Host e-c07ki* kilburn kilburn.cs.man.ac.uk
