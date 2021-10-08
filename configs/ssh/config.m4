@@ -1,5 +1,8 @@
 CONFIG_FILE(ssh config, ~/.ssh/config)
 
+# Make ssh-agent to automatically add all ssh keys on startup
+AddKeysToAgent yes
+
 ON_COMPUTER(BBCRD)
 
 # CANS-specific SSH configurations (NB: these files have been copied from the
