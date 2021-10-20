@@ -47,8 +47,8 @@ Host shelf
 	ForwardX11Trusted yes
 
 Host home
-	HostName h.jhnet.co.uk
-	User root
+	HostName home.jamh.org
+	User jonathan
 
 Host bitbucket.org
  User mossblaser
