@@ -99,6 +99,10 @@ set relativenumber
 set spelllang=en_gb
 set spell
 
+" Enable XML folding
+let g:xml_syntax_folding=1
+autocmd FileType xml setlocal foldmethod=syntax
+
 " Some customisations for gvim
 " A nice font for gvim
 ON_COMPUTER(PERSONAL)
