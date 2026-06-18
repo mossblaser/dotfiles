@@ -97,6 +97,7 @@ set relativenumber
 
 " I'm british...
 set spelllang=en_gb
+set spell
 
 " Some customisations for gvim
 " A nice font for gvim
