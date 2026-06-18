@@ -10,7 +10,7 @@ function colour_code_user_machine {
 	case "$USER" in
 		"jonathan")            USER_COLOUR=6;;
 		"heathcj9"|"mbax9jh2") USER_COLOUR=2;;
-		"jonathah")            USER_COLOUR=3;;
+		"jonhea03")            USER_COLOUR=3;;
 		"root")                USER_COLOUR=1;;
 		*)                     USER_COLOUR=0;;
 	esac
@@ -18,7 +18,7 @@ function colour_code_user_machine {
 	case "$HOSTNAME" in
 		jonathan*)             MACHINE_COLOUR=6;;
 		rs0*|kilburn|E-C07KI*) MACHINE_COLOUR=2;;
-		rd*)                   MACHINE_COLOUR=3;;
+		e142135)               MACHINE_COLOUR=3;;
 		*)                     MACHINE_COLOUR=0;;
 	esac
 	
