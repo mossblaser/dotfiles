@@ -121,6 +121,11 @@ if &t_Co > 2 || has("gui_running")
   set hlsearch
 endif
 
+" Use a more legible colour scheme when running gvimdiff
+if has("gui_running") && &diff
+    colorscheme darkblue
+endif
+
 " Have a reasonable default size for GUI sessions
 if has("gui_running")
   set lines=50 columns=100

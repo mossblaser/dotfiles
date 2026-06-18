@@ -21,3 +21,10 @@ ON_COMPUTER(ARM_COMPUTER)
 	username = jonhea03
 ELSE_COMPUTER()
 	username = mossblaser
+END_COMPUTER()
+
+[diff]
+	tool = gvimdiff
+[difftool]
+	prompt = false
+
