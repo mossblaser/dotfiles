@@ -6,6 +6,10 @@ ON_COMPUTER(ARM_COMPUTER)
 ELSE_COMPUTER()
 	email = mail@jhnet.co.uk
 END_COMPUTER()
+
+[init]
+	defaultBranch = main
+
 [push]
 	default = matching
 
