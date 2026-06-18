@@ -63,7 +63,7 @@ set $float_move_rate 25
 # Auto-start
 ################################################################################
 
-ON_COMPUTER(BBC_COMPUTER)
+ON_COMPUTER(ARM_COMPUTER)
 # Lock the session after some idle time
 exec --no-startup-id xautolock -time 15 -locker i3lock
 
@@ -129,7 +129,6 @@ PROGRAM(w, BROWSER)
 PROGRAM(f, IF_COMPUTER(USES_ARCH,nemo --no-desktop,nemo --no-desktop))
 
 # Graphics
-PROGRAM(g, ~/.i3/layouts/gimp.sh)
 PROGRAM(i, inkscape)
 
 # IM
@@ -143,6 +142,12 @@ PROGRAM(m,wxmaxima)
 
 # Latex
 PROGRAM(t, ~/.i3/layouts/latex.sh)
+
+ON_COMPUTER(ARM_COMPUTER)
+PROGRAM(g, ~/bin/glossary)
+PROGRAM(x, ~/bin/myrandr)
+PROGRAM(Shift+x, ~/bin/myrandr --same)
+END_COMPUTER()
 
 ################################################################################
 # Font
