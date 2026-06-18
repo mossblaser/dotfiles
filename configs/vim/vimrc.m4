@@ -52,6 +52,8 @@ set scrolloff=2
 
 " Auto-wrap long lines
 set tw=79
+autocmd FileType gitcommit setlocal tw=72
+autocmd FileType python setlocal tw=88
 
 " wrap round movement keys over lines
 set whichwrap=b,s,<,>,[,],h,l
@@ -70,12 +72,14 @@ set list
 set listchars=tab:⌞\ ,trail:⋅
 
 " set the width of a tab stop
-set softtabstop=2
-set tabstop=2
+set softtabstop=4
+set tabstop=4
 " set the width of an auto indent
-set shiftwidth=2
+set shiftwidth=4
 " turn tabs into spaces
-"set expandtab
+set expandtab
+" but not for makefiles
+autocmd FileType make setlocal noexpandtab
 " Round indentation inserted with > and < to multiples of shift width
 set shiftround
 
