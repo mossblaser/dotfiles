@@ -142,3 +142,7 @@ endif
 
 " set autoindenting on
 set autoindent
+
+" The 'parcel' javascript tool is a bit crap and its file watcher can't handle
+" it if VIM doesn't use this mode...
+set backupcopy=yes

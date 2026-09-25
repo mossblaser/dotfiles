@@ -22,6 +22,7 @@ END_COMPUTER()
 [ -d "$HOME/bin" ] && export PATH="$HOME/bin:$PATH"
 [ -d "$HOME/bin/scripts" ] && export PATH="$HOME/bin/scripts:$PATH"
 [ -d "$HOME/.local/bin" ] && export PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/.cargo/bin" ] && export PATH="$HOME/.cargo/bin:$PATH"
 
 # We want conman to be in the path
 [ -d "$HOME/.dotfiles" ] && export PATH="$HOME/.dotfiles:$PATH"
@@ -31,6 +32,14 @@ END_COMPUTER()
 
 # We want Android Studio in the path
 [ -d "/opt/android-studio" ] && export PATH="/opt/android-studio/bin:$PATH"
+[ -d "$HOME/bin/android-studio/bin" ] && export PATH="$PATH:$HOME/bin/android-studio/bin"
+if [ -d "$HOME/Android/Sdk" ]; then
+	export ANDROID_HOME="$HOME/Android/Sdk"
+	export PATH="$PATH:$ANDROID_HOME/emulator"
+	export PATH="$PATH:$ANDROID_HOME/tools"
+	export PATH="$PATH:$ANDROID_HOME/tools/bin"
+	export PATH="$PATH:$ANDROID_HOME/platform-tools"
+fi
 
 # We want the maple toolchain to be inthe path
 [ -d "$HOME/Programing/libmaple" ] && export LIB_MAPLE_HOME="$HOME/Programing/libmaple"

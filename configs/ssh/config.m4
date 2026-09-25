@@ -18,6 +18,12 @@ Match final host *
 
 END_COMPUTER()
 
+Host router
+	User root
+
+Host octopi
+	User pi
+
 Host home
 	User jonathan
 	Hostname home.jamh.org

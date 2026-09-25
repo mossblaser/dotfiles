@@ -27,4 +27,3 @@ END_COMPUTER()
 	tool = gvimdiff
 [difftool]
 	prompt = false
-
